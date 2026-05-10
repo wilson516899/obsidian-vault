@@ -1,0 +1,12 @@
+# Obsidian 系統檔
+.obsidian/workspace.json
+.obsidian/workspace-mobile.json
+.obsidian/cache
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 暫存
+*.tmp
+*.bak

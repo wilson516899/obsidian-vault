@@ -1,0 +1,10 @@
+# Dame Agatha Christie
+
+> 國籍：[[Authors/Nationalities/英國作家|英國]]
+
+## 著作
+
+- [[ABC謀殺案]]
+- [[東方快車謀殺案]]
+- [[羅傑.艾克洛命案]]
+- [[一個都不留]]

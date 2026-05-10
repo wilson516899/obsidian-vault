@@ -1,0 +1,7 @@
+# Barbara Minto
+
+> 國籍：[[Authors/Nationalities/美國作家|美國]]
+
+## 著作
+
+- [[金字塔原理：思考、寫作、解決問題的邏輯方法]]

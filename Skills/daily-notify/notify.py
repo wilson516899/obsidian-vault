@@ -6,17 +6,15 @@
 Daily Note 不混入，保持純 Claude 工作紀錄
 """
 
-import os, json, urllib.request
+import os, subprocess, glob
 from datetime import datetime, timedelta
 
 VAULT = os.environ.get(
     "VAULT_PATH",
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
-ANTHROPIC_KEY = os.environ.get("ANTHROPIC_API_KEY", "")
-TODAY     = datetime.now().strftime("%Y-%m-%d")
-YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
-WEEKDAY   = ["一", "二", "三", "四", "五", "六", "日"][datetime.now().weekday()]
+TODAY   = datetime.now().strftime("%Y-%m-%d")
+WEEKDAY = ["一", "二", "三", "四", "五", "六", "日"][datetime.now().weekday()]
 
 
 def read(path):
@@ -30,17 +28,35 @@ def read(path):
 def collect_context():
     parts = []
 
-    dn = read(f"{VAULT}/Daily Notes/{YESTERDAY}.md")
-    if dn:
-        parts.append(f"=== 昨日紀錄 ===\n{dn[:1500]}")
+    # 近三天 Daily Notes
+    for i in range(1, 4):
+        date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+        dn = read(f"{VAULT}/Daily Notes/{date}.md")
+        if dn:
+            parts.append(f"=== {date} 紀錄 ===\n{dn[:800]}")
 
+    # 代辦事項
     todo = read(f"{VAULT}/靈感筆記/代辦事項.md")
     if todo:
         parts.append(f"=== 代辦事項 ===\n{todo}")
 
+    # 年度計畫（目標全貌）
+    plan = read(f"{VAULT}/靈感筆記/明年計畫.md")
+    if plan:
+        parts.append(f"=== 年度計畫 ===\n{plan[:1000]}")
+
+    # 靈感筆記（近期捕捉，排除固定檔）
+    skip = {"instructions.md", "代辦事項.md", "明年計畫.md", "PMI.md"}
+    for path in glob.glob(f"{VAULT}/靈感筆記/*.md"):
+        if os.path.basename(path) not in skip:
+            content = read(path)
+            if content:
+                parts.append(f"=== 靈感：{os.path.basename(path)} ===\n{content[:400]}")
+
+    # 小說大綱（完整讀入，供方向四使用）
     outline = read(f"{VAULT}/創作小說/大綱.md")
     if outline:
-        parts.append(f"=== 小說大綱（節錄）===\n{outline[:800]}")
+        parts.append(f"=== 小說大綱 ===\n{outline[:1500]}")
 
     return "\n\n".join(parts)
 
@@ -48,41 +64,39 @@ def collect_context():
 def ask_claude(context):
     prompt = f"""你是崇瑋的個人 AI 助理。今天是 {TODAY}（星期{WEEKDAY}）。
 
-根據下方 Vault 近況，推薦他今天最重要的 3-5 件事。
-這是你主動建議，不是他自己寫的清單。
-格式簡潔，適合手機閱讀，全文不超過 200 字，用繁體中文。
+根據下方 Vault 資料，完成兩件事：
 
-輸出格式（嚴格遵守）：
-① 最重要的事
-② 次要事項
-③ 其他
+【一】今日代辦推薦（3-5 件）
+主動推薦今天最值得做的事，考量年度目標進度、代辦積壓程度、今天是星期幾。
+格式：
+① 最重要
+② 次要
+③ 其他（可多條）
+💡 一句提醒
 
-💡 一句鼓勵或提醒
+【二】小說今日任務
+根據大綱，判斷目前進度最需要推進的章節或段落，給出一個具體的今日寫作目標。
+格式：
+✍️ 今日小說任務：[章節名稱]
+目標：寫完 [具體場景或段落]，約 [字數] 字
+
+全文不超過 250 字，用繁體中文，適合手機閱讀。
 
 ---
 {context}"""
 
-    body = json.dumps({
-        "model": "claude-sonnet-4-6",
-        "max_tokens": 350,
-        "messages": [{"role": "user", "content": prompt}]
-    }).encode()
-
-    req = urllib.request.Request(
-        "https://api.anthropic.com/v1/messages",
-        data=body,
-        headers={
-            "x-api-key": ANTHROPIC_KEY,
-            "anthropic-version": "2023-06-01",
-            "content-type": "application/json"
-        }
+    result = subprocess.run(
+        ["claude", "--print", prompt],
+        capture_output=True,
+        text=True,
+        timeout=60
     )
-    with urllib.request.urlopen(req, timeout=30) as r:
-        return json.loads(r.read())["content"][0]["text"]
+    if result.returncode != 0:
+        raise RuntimeError(f"claude CLI 失敗：{result.stderr}")
+    return result.stdout.strip()
 
 
 def write_daily_agenda(briefing):
-    """覆蓋固定檔案，手機釘選此頁每天看最新內容"""
     path = f"{VAULT}/今日代辦.md"
     content = f"""# 今日代辦
 
@@ -98,7 +112,6 @@ def write_daily_agenda(briefing):
 
 
 def archive_agenda(briefing):
-    """歸檔到代辦歷史/，要回頭查再進來"""
     path = f"{VAULT}/代辦歷史/{TODAY}.md"
     content = f"""# {TODAY}（星期{WEEKDAY}）代辦記錄
 

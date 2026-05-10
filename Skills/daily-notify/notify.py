@@ -110,12 +110,14 @@ def fetch_news():
             req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
             with urllib.request.urlopen(req, timeout=10) as r:
                 root = ET.fromstring(r.read())
-            ns = {"atom": "http://www.w3.org/2005/Atom"}
-            # RSS 格式
             entry = root.find(".//item")
             if entry is not None:
                 title = entry.findtext("title", "").strip()
-                items.append(f"{label}｜{title}")
+                link  = entry.findtext("link", "").strip()
+                if link:
+                    items.append(f"{label}｜[{title}]({link})")
+                else:
+                    items.append(f"{label}｜{title}")
         except Exception as e:
             items.append(f"{label}｜（今日無法取得：{e}）")
     return items

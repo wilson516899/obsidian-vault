@@ -12,8 +12,7 @@ VAULT   = os.environ.get(
     "VAULT_PATH",
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
-PLACEHOLDER = "以一套書去介紹各式各樣的著名書作"
-TODAY       = datetime.now().strftime("%Y-%m-%d")
+TODAY = datetime.now().strftime("%Y-%m-%d")
 
 
 def read(path):
@@ -35,8 +34,12 @@ def get_book_name(content):
 
 
 def has_no_notes(content):
-    """只有佔位文字或空白，代表使用者還沒填過筆記"""
-    return PLACEHOLDER in content
+    """判斷 # 大綱 區塊是否有真實內容（超過 30 字且非空行）"""
+    m = re.search(r'# 大綱\n(.*?)(?=\n# |\Z)', content, re.DOTALL)
+    if not m:
+        return True
+    body = m.group(1).strip()
+    return len(body) < 30
 
 
 def append_to_agenda(book_name, book_path):

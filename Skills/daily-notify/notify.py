@@ -6,7 +6,8 @@
 Daily Note 不混入，保持純 Claude 工作紀錄
 """
 
-import os, subprocess, glob
+import os, subprocess, glob, urllib.request
+import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
 VAULT = os.environ.get(
@@ -96,8 +97,33 @@ def ask_claude(context):
     return result.stdout.strip()
 
 
-def write_daily_agenda(briefing):
+NEWS_FEEDS = [
+    ("🌍 國際", "https://feeds.bbci.co.uk/zhongwen/trad/rss.xml"),
+    ("🇹🇼 台灣政經", "https://news.ltn.com.tw/rss/politics.xml"),
+    ("🤖 AI 科技", "https://techcrunch.com/category/artificial-intelligence/feed/"),
+]
+
+def fetch_news():
+    items = []
+    for label, url in NEWS_FEEDS:
+        try:
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
+            with urllib.request.urlopen(req, timeout=10) as r:
+                root = ET.fromstring(r.read())
+            ns = {"atom": "http://www.w3.org/2005/Atom"}
+            # RSS 格式
+            entry = root.find(".//item")
+            if entry is not None:
+                title = entry.findtext("title", "").strip()
+                items.append(f"{label}｜{title}")
+        except Exception as e:
+            items.append(f"{label}｜（今日無法取得：{e}）")
+    return items
+
+
+def write_daily_agenda(briefing, news):
     path = f"{VAULT}/今日代辦.md"
+    news_block = "\n".join(f"- {n}" for n in news)
     content = f"""# 今日代辦
 
 > 每天早上 8:00 自動更新 · [[Skills/daily-notify/README|daily-notify]]
@@ -105,6 +131,12 @@ def write_daily_agenda(briefing):
 📅 {TODAY}（星期{WEEKDAY}）
 
 {briefing}
+
+---
+
+📰 **今日新聞**
+
+{news_block}
 """
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
@@ -128,6 +160,7 @@ if __name__ == "__main__":
     print(f"[{TODAY}] 生成今日代辦中...")
     ctx      = collect_context()
     briefing = ask_claude(ctx)
-    write_daily_agenda(briefing)
+    news     = fetch_news()
+    write_daily_agenda(briefing, news)
     archive_agenda(briefing)
     print("完成")

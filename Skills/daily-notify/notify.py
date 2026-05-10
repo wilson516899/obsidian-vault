@@ -86,7 +86,7 @@ def write_daily_agenda(briefing):
     path = f"{VAULT}/今日代辦.md"
     content = f"""# 今日代辦
 
-> 每天早上 8:00 自動更新 · [[Projects/daily-notify/README|daily-notify]]
+> 每天早上 8:00 自動更新 · [[Skills/daily-notify/README|daily-notify]]
 
 📅 {TODAY}（星期{WEEKDAY}）
 

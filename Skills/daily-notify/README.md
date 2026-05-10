@@ -1,6 +1,6 @@
 # daily-notify 每日代辦
 
-> 隸屬於 [[Projects/instructions|Projects]] · 技能：[[Skills/daily-note|每日筆記]]
+> 隸屬於 [[Skills/instructions|Skills]] · 技能：[[Skills/daily-note|每日筆記]]
 
 每天早上 8:00 自動生成今日 AI 推薦任務，寫入固定檔案供手機查看。
 
@@ -9,7 +9,7 @@
 ## 架構
 
 ```
-Projects/daily-notify/
+Skills/daily-notify/
 ├── notify.py   ← 主腳本
 └── README.md   ← 本檔案
 ```
@@ -49,7 +49,7 @@ crontab -e
 加入：
 
 ```
-0 8 * * * ANTHROPIC_API_KEY="sk-ant-..." VAULT_PATH="/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian" python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Projects/daily-notify/notify.py >> /tmp/daily-notify.log 2>&1
+0 8 * * * ANTHROPIC_API_KEY="sk-ant-..." VAULT_PATH="/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian" python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/daily-notify/notify.py >> /tmp/daily-notify.log 2>&1
 ```
 
 ### 確認 cron 運作
@@ -73,7 +73,7 @@ WSL2 重開機後 cron 會停止，解法：
 ## 手動測試
 
 ```bash
-python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Projects/daily-notify/notify.py
+python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/daily-notify/notify.py
 ```
 
 ---

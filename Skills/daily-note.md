@@ -13,34 +13,26 @@
 
 ## 自動模式（cron 每日早上 8:00）
 
-由 `Projects/daily-notify/notify.py` 執行，詳見 [[Projects/daily-notify/README|daily-notify README]]。
+由 `Skills/daily-notify/notify.py` 執行，詳見 [[Skills/daily-notify/README|daily-notify README]]。
 
 ### 自動模式流程
 
 1. 讀取昨日 Daily Note、代辦事項.md、創作小說/大綱.md
-2. 呼叫 Claude API 生成今日重點摘要（繁體中文，≤250 字）
-3. 寫入 `Daily Notes/YYYY-MM-DD.md`，插入 `## 📋 今日任務` 區塊
-4. 透過 LINE Notify 推播到手機
+2. 呼叫 Claude API 生成今日推薦任務（繁體中文，≤200 字）
+3. 寫入 `今日代辦.md`（根目錄，每日覆蓋）
+4. 歸檔至 `代辦歷史/YYYY-MM-DD.md`
 
-### 自動生成的模板（新日期）
+### 自動生成的輸出格式
 
-```markdown
-# YYYY-MM-DD 每日紀錄
-
-> 隸屬於 [[CLAUDE]] · 技能：[[Skills/daily-note|每日筆記]]
-
-## 📋 今日任務
-
-（Claude API 生成的每日重點）
-
----
-
-## 今日完成事項
-
-## 進行中的計畫
-
-## 備註
 ```
+① 最重要的事
+② 次要事項
+③ 其他
+
+💡 一句鼓勵或提醒
+```
+
+寫入 `今日代辦.md`，同時歸檔一份到 `代辦歷史/YYYY-MM-DD.md`。
 
 ---
 
@@ -64,7 +56,7 @@
 1. 讀取今天的 Daily Note
 2. 在「今日完成事項」補上已完成的工作，分小節（### ）區分主題
 3. 在「進行中的計畫」記錄尚未完成的項目與下一步
-4. **不要覆蓋** `## 📋 今日任務` 區塊（由自動模式寫入）
+4. **不要動** `今日代辦.md`（由自動模式管理）
 
 #### 讀取近期記憶
 

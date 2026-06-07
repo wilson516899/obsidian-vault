@@ -3,12 +3,10 @@
 閱讀日期: 
 封面: 圖書館/covers/ABC謀殺案.jpg
 ---
-# ABC謀殺案
-
 > 作者：[[Authors/Dame Agatha Christie|Dame Agatha Christie]]
 > 閱讀方式：[[Methods/基本閱讀|基本閱讀]]
 > 狀態：待確認
-> 閱讀日期：
+> 閱讀日期：封面: 圖書館/covers/ABC謀殺案.jpg
 
 ![[covers/ABC謀殺案.jpg]]
 

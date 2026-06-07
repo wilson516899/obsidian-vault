@@ -1,5 +1,3 @@
-# 小說創作
-
 > 隸屬於 [[CLAUDE]] · [[Projects/instructions|Projects 說明]]
 
 ## 故事大綱

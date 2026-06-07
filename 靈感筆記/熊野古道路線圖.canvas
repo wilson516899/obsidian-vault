@@ -1,0 +1,34 @@
+{
+	"nodes":[
+		{"id":"1a2b3c4d5e6f0005","type":"text","text":"## 🌲 継桴王子\n千年夫婦杉 📷\n攝影必停・晨霧光線\n民宿老闆通常載到此","x":-220,"y":-65,"width":280,"height":130,"color":"3"},
+		{"id":"1a2b3c4d5e6f0006","type":"text","text":"## 発心門王子\n最後 7km 前哨站\n三越峠を越えた後\n此後全部下坡到本宮","x":340,"y":-65,"width":280,"height":130,"color":"3"},
+		{"id":"1a2b3c4d5e6f0007","type":"text","text":"## ⛩️ 熊野本宮大社\n**第一社 · Day 3 終點**\n完歩証明書 申請 📜\n大斎原（元宮）必去 📷\n標高 150m","x":900,"y":-80,"width":310,"height":160,"color":"1"},
+		{"id":"1a2b3c4d5e6f0008","type":"text","text":"## ⛩️ 速玉大社\n第二社\n新宮市（海側）\n川舟 1.5hr で到着","x":1490,"y":-65,"width":280,"height":130,"color":"1"},
+		{"id":"1a2b3c4d5e6f0009","type":"text","text":"## ⛩️ 那智大社\n**第三社**\n那智瀑布 133m 📷\n三重塔との絶景必撮\nバス 速玉から 40min","x":2050,"y":-80,"width":310,"height":160,"color":"1"},
+		{"id":"1a2b3c4d5e6f0010","type":"text","text":"## 🏙️ 大阪\n特急くろしお 2.5hr\nUSJ or 直接回台灣\n🎉 ゴール","x":2640,"y":-65,"width":280,"height":130,"color":"5"},
+		{"id":"1a2b3c4d5e6f0011","type":"text","text":"📅 **Day 2 步行**　滝尻 → 近露　13.5km ↑600m　官方 6–8 小時　全程最陡","x":-1750,"y":-270,"width":1050,"height":50,"color":"2"},
+		{"id":"1a2b3c4d5e6f0012","type":"text","text":"📅 **Day 3 步行**　継桴（民宿車送）→ 発心門 → 本宮　≈20km　約 9 小時","x":-760,"y":-270,"width":1080,"height":50,"color":"3"},
+		{"id":"1a2b3c4d5e6f0013","type":"text","text":"📅 **Day 4**　川舟 🛶 → 速玉 → バス → 那智瀑布 → 特急 → 大阪","x":900,"y":-270,"width":760,"height":50,"color":"5"},
+		{"id":"1a2b3c4d5e6f0015","type":"text","text":"## ♨️ 湯の峰温泉\n日本最古 1,800年\n公眾浴場・温泉蛋\n民宿 瀧よし","x":800,"y":310,"width":280,"height":140,"color":"6"},
+		{"id":"1a2b3c4d5e6f0016","type":"text","text":"## ♨️ 川湯温泉 冨士屋\n整條溪都是溫泉 FREE\n360年老旅館\n門口即野溪溫泉","x":1140,"y":310,"width":280,"height":140,"color":"6"},
+		{"id":"1a2b3c4d5e6f0001","type":"text","text":"## 🏙️ 田辺市\n出發整備・補給\n領取スタンプ帳（免費）\n特急くろしお 2.5hr 到達","x":-2080,"y":-140,"width":280,"height":130,"color":"5"},
+		{"id":"1a2b3c4d5e6f0003","type":"text","text":"## ▲ 高原\n最高地点 650m\n霧の里 飲料100円\n全程最陡段終點","x":-1280,"y":-135,"width":260,"height":135,"color":"3"},
+		{"id":"1a2b3c4d5e6f0004","type":"text","text":"## 🌙 近露王子\n**Day 2 終點**\n累計 13.5km ↑600m\n民宿ちかつゆ ⭐⭐⭐⭐⭐\n河畔温泉・含早晚餐","x":-845,"y":120,"width":290,"height":150,"color":"4"},
+		{"id":"1a2b3c4d5e6f0014","type":"text","text":"## 🏠 民宿ちかつゆ\n近露・河畔温泉\n含早晚餐\n老闆隔天車送到継桴\n⭐⭐⭐⭐⭐ 最推薦","x":-845,"y":440,"width":300,"height":150,"color":"6"},
+		{"id":"1a2b3c4d5e6f0002","type":"text","text":"## 🎌 滝尻王子\n中辺路 登山口\n標高 100m\nバス 田辺→ 約50min","x":-1750,"y":120,"width":280,"height":140,"color":"2"}
+	],
+	"edges":[
+		{"id":"e1f2a3b4c5d60001","fromNode":"1a2b3c4d5e6f0001","fromSide":"right","toNode":"1a2b3c4d5e6f0002","toSide":"left","label":"バス 50min"},
+		{"id":"e1f2a3b4c5d60002","fromNode":"1a2b3c4d5e6f0002","fromSide":"right","toNode":"1a2b3c4d5e6f0003","toSide":"left","color":"2","label":"3.7km ↑600m 🔥"},
+		{"id":"e1f2a3b4c5d60003","fromNode":"1a2b3c4d5e6f0003","fromSide":"right","toNode":"1a2b3c4d5e6f0004","toSide":"left","color":"2","label":"9.8km ↓400m"},
+		{"id":"e1f2a3b4c5d60004","fromNode":"1a2b3c4d5e6f0004","fromSide":"right","toNode":"1a2b3c4d5e6f0005","toSide":"left","color":"3","label":"4km（民宿車送）"},
+		{"id":"e1f2a3b4c5d60005","fromNode":"1a2b3c4d5e6f0005","fromSide":"right","toNode":"1a2b3c4d5e6f0006","toSide":"left","color":"3","label":"13km 三越峠越え"},
+		{"id":"e1f2a3b4c5d60006","fromNode":"1a2b3c4d5e6f0006","fromSide":"right","toNode":"1a2b3c4d5e6f0007","toSide":"left","color":"3","label":"7km ↓300m"},
+		{"id":"e1f2a3b4c5d60007","fromNode":"1a2b3c4d5e6f0007","fromSide":"right","toNode":"1a2b3c4d5e6f0008","toSide":"left","color":"5","label":"🛶 川舟 1.5hr"},
+		{"id":"e1f2a3b4c5d60008","fromNode":"1a2b3c4d5e6f0008","fromSide":"right","toNode":"1a2b3c4d5e6f0009","toSide":"left","color":"5","label":"バス 40min"},
+		{"id":"e1f2a3b4c5d60009","fromNode":"1a2b3c4d5e6f0009","fromSide":"right","toNode":"1a2b3c4d5e6f0010","toSide":"left","color":"5","label":"特急くろしお 2.5hr"},
+		{"id":"e1f2a3b4c5d60010","fromNode":"1a2b3c4d5e6f0004","fromSide":"bottom","toNode":"1a2b3c4d5e6f0014","toSide":"top","toEnd":"none"},
+		{"id":"e1f2a3b4c5d60011","fromNode":"1a2b3c4d5e6f0007","fromSide":"bottom","toNode":"1a2b3c4d5e6f0015","toSide":"top","toEnd":"none"},
+		{"id":"e1f2a3b4c5d60012","fromNode":"1a2b3c4d5e6f0007","fromSide":"bottom","toNode":"1a2b3c4d5e6f0016","toSide":"top","toEnd":"none"}
+	]
+}

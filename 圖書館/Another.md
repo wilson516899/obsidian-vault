@@ -3,12 +3,10 @@
 閱讀日期: 
 封面: 圖書館/covers/Another.jpg
 ---
-# Another
-
 > 作者：[[Authors/綾辻行人|綾辻行人]]
 > 閱讀方式：[[Methods/基本閱讀|基本閱讀]]
 > 狀態：已讀
-> 閱讀日期：
+> 閱讀日期：封面: 圖書館/covers/Another.jpg
 
 ![[covers/Another.jpg]]
 

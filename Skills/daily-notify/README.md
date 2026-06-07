@@ -1,5 +1,3 @@
-# daily-notify 每日代辦
-
 > 隸屬於 [[Skills/instructions|Skills]] · 技能：[[Skills/daily-note|每日筆記]]
 
 每天早上 8:00 自動生成今日 AI 推薦任務，寫入固定檔案供手機查看。
@@ -82,4 +80,4 @@ python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/daily
 
 - [[Skills/daily-note|每日筆記技能]]
 - [[今日代辦|今日代辦（輸出檔）]]
-- [[靈感筆記/代辦事項|代辦事項]]
+- [[靈感筆記/2026年計畫|2026年計畫（上下文來源）]]

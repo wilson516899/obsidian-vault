@@ -1,5 +1,3 @@
-# 參考資料
-
 > 隸屬於 [[Projects/instructions|Projects]]
 
 AI 工具、技術筆記、工作流方法論的集中存放區。

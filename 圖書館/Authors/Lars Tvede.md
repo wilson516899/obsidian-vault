@@ -1,5 +1,3 @@
-# Lars Tvede
-
 > 國籍：[[Authors/Nationalities/丹麥作家|丹麥]]
 
 ## 著作

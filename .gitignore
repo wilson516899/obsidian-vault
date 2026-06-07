@@ -10,3 +10,7 @@ Thumbs.db
 # 暫存
 *.tmp
 *.bak
+
+# Node.js 依賴（勿上傳大型二進位檔）
+node_modules/
+**/node_modules/

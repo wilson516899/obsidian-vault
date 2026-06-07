@@ -3,11 +3,9 @@
 閱讀日期: 
 封面: 圖書館/covers/Hello,Hello and Hello.jpg
 ---
-# Hello,Hello and Hello
-
 > 閱讀方式：[[Methods/基本閱讀|基本閱讀]]
 > 狀態：待確認
-> 閱讀日期：
+> 閱讀日期：封面: 圖書館/covers/Hello,Hello and Hello.jpg
 
 
 # 大綱

@@ -1,15 +1,32 @@
-# Skills 資料夾說明
-
 > 隸屬於 [[CLAUDE]]
 
-這個資料夾存放 Claude 可以執行的技能包。
-每個技能是一個 `.md` 檔案，描述如何完成特定任務。
+需要執行某項任務時，從下方找到對應 skill，讀其 README.md 後再操作。
 
-## 現有技能清單
+---
 
-- [[Skills/daily-note|daily-note.md]] - 建立與更新每日筆記
-- [[Skills/save-to-obsidian|save-to-obsidian.md]] - 將內容存入 Obsidian
+## 自動化腳本型（資料夾 + 腳本）
 
-## 使用方式
+| Skill | 說明 | 觸發 |
+|-------|------|------|
+| [[Skills/daily-note/README\|daily-note]] | 每日筆記自動產生 | cron 23:00，每日 |
+| [[Skills/quest-system/README\|quest-system]] | 修煉積分結算與進度追蹤 | cron 07:55，每日 |
+| [[Skills/daily-notify/README\|daily-notify]] | 每日代辦 + 新聞簡報產生 | cron 08:00，每日 |
+| [[Skills/book-fill/README\|book-fill]] | 書摘 + 小說任務推薦 | cron 08:05，每週一 |
+| [[Skills/budget-import/README\|budget-import]] | 匯入 Budget App 記帳資料到 記帳/ 資料夾 | 手動，建議每月 1 號 |
+| [[Skills/git-sync/README\|git-sync]] | Vault 變更自動 commit + push 到 GitHub | cron 23:05，每日 |
 
-當我說「幫我執行 XXX」，先來這裡找對應的技能檔案再執行。
+## 行為指令型（對話中執行）
+
+| Skill | 說明 | 觸發 |
+|-------|------|------|
+| [[Skills/save-to-obsidian/README\|save-to-obsidian]] | 判斷內容存放位置並寫入 Vault | 使用者說「存到 Obsidian」 |
+
+
+---
+
+## 新增 Skill 規範
+
+1. 在 `Skills/` 下建立新資料夾 `Skills/xxx/`
+2. 建立 `Skills/xxx/README.md`，內容包含：用途、觸發方式、關鍵檔案、調用時機、注意事項
+3. 在本檔案（instructions.md）加入索引
+4. 若有 cron 排程，同步更新 `CLAUDE.md`

@@ -3,10 +3,9 @@
 每日代辦通知腳本
 由 cron 每天早上 8 點觸發，生成今日建議任務
 寫入固定檔案（手機 Obsidian 釘選查看）+ 代辦歷史歸檔
-Daily Note 不混入，保持純 Claude 工作紀錄
 """
 
-import os, subprocess, glob, urllib.request
+import os, subprocess, glob, json, urllib.request
 import xml.etree.ElementTree as ET
 from datetime import datetime, timedelta
 
@@ -16,8 +15,8 @@ VAULT   = os.environ.get(
 )
 TODAY   = datetime.now().strftime("%Y-%m-%d")
 WEEKDAY = ["一", "二", "三", "四", "五", "六", "日"][datetime.now().weekday()]
+DOW     = datetime.now().weekday()  # 0=Mon, 1=Tue, ..., 6=Sun
 
-# 每個 category 可設多個 feed，抓前 N 則後由 Claude 篩選
 NEWS_SOURCES = {
     "🌍 國際": {
         "feeds": ["https://feeds.bbci.co.uk/zhongwen/trad/rss.xml"],
@@ -52,7 +51,6 @@ def read(path):
 
 
 def fetch_rss_items(url, count):
-    """從 RSS feed 抓前 count 則，回傳 (title, link) list"""
     try:
         req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
         with urllib.request.urlopen(req, timeout=10) as r:
@@ -69,26 +67,27 @@ def fetch_rss_items(url, count):
 
 
 def collect_news_candidates():
-    """各 category 抓候選新聞，整理成字串供 Claude 篩選"""
     blocks = []
-    raw = {}  # 儲存 title→link 對照表
+    id_map = {}   # id → (title, link)
+    counter = [0]
+
     for category, cfg in NEWS_SOURCES.items():
         candidates = []
         for url in cfg["feeds"]:
             candidates.extend(fetch_rss_items(url, cfg["count"]))
-        # 去重（相同標題）
         seen = set()
-        unique = []
+        cat_lines = []
         for title, link in candidates:
             if title not in seen:
                 seen.add(title)
-                unique.append((title, link))
-                raw[title] = link
-        lines = "\n".join(f"  - {t}" for t, _ in unique[:8])
-        blocks.append(
-            f"【{category}】篩選條件：{cfg['criteria']}\n候選：\n{lines}"
-        )
-    return "\n\n".join(blocks), raw
+                counter[0] += 1
+                nid = f"N{counter[0]:02d}"
+                id_map[nid] = (title, link)
+                cat_lines.append(f"  [{nid}] {title}")
+        lines = "\n".join(cat_lines[:8])
+        blocks.append(f"【{category}】篩選條件：{cfg['criteria']}\n候選：\n{lines}")
+
+    return "\n\n".join(blocks), id_map
 
 
 def collect_context():
@@ -100,53 +99,135 @@ def collect_context():
         if dn:
             parts.append(f"=== {date} 紀錄 ===\n{dn[:800]}")
 
-    todo = read(f"{VAULT}/靈感筆記/代辦事項.md")
-    if todo:
-        parts.append(f"=== 代辦事項 ===\n{todo}")
-
-    plan = read(f"{VAULT}/靈感筆記/明年計畫.md")
+    plan = read(f"{VAULT}/靈感筆記/2026年計畫.md")
     if plan:
-        parts.append(f"=== 年度計畫 ===\n{plan[:1000]}")
+        parts.append(f"=== 年度OKR計畫 ===\n{plan[:1200]}")
 
-    skip = {"instructions.md", "代辦事項.md", "明年計畫.md", "PMI.md"}
+    skip = {"instructions.md", "2026年計畫.md", "PMI.md"}
     for path in glob.glob(f"{VAULT}/靈感筆記/*.md"):
         if os.path.basename(path) not in skip:
             content = read(path)
             if content:
                 parts.append(f"=== 靈感：{os.path.basename(path)} ===\n{content[:400]}")
 
-    outline = read(f"{VAULT}/創作小說/大綱.md")
-    if outline:
-        parts.append(f"=== 小說大綱 ===\n{outline[:1500]}")
-
     return "\n\n".join(parts)
+
+
+def load_progress():
+    path = f"{VAULT}/Skills/quest-system/progress.json"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except:
+        return {"total_pts": 0, "streak": 0, "current_goal": {"name": "衣著採購", "target_pts": 700}}
+
+
+def build_progress_bar(progress):
+    total = progress.get("total_pts", 0)
+    streak = progress.get("streak", 0)
+    goal = progress.get("current_goal", {})
+    goal_name = goal.get("name", "衣著採購")
+    goal_pts  = goal.get("target_pts", 700)
+
+    pct = min(total / goal_pts, 1.0)
+    filled = int(pct * 20)
+    bar = "█" * filled + "░" * (20 - filled)
+    streak_icon = f" 🔥" if streak >= 3 else ""
+
+    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    log = progress.get("daily_log", [])
+    yesterday_log = next((d for d in reversed(log) if d.get("date") == yesterday), None)
+    yesterday_line = ""
+    if yesterday_log:
+        done_count = len(yesterday_log.get("tasks_done", []))
+        yesterday_line = f"\n昨日 +{yesterday_log.get('pts', 0)} pt（{done_count} 項完成）"
+
+    return (
+        f"⚡ 修煉進度  ·  累計：{total} pt  ·  連擊 {streak} 天{streak_icon}"
+        f"{yesterday_line}\n\n"
+        f"🎯 目標：{goal_name}（{goal_pts} pt）\n"
+        f"{bar}  {int(pct*100)}%  [距目標 {max(goal_pts - total, 0)} pt]"
+    )
+
+
+def build_quest_section():
+    """根據今天星期幾產生對應的修煉任務 checkbox"""
+    # 0=Mon,1=Tue,2=Wed,3=Thu,4=Fri,5=Sat,6=Sun
+    is_exercise_day = DOW in [1, 3]   # 週二、週四
+    is_weekend      = DOW in [5, 6]   # 週六、週日
+
+    fixed = (
+        "**固定任務**\n"
+        "- [ ] 記錄體重 `+5` → 今日體重：\n"
+        "- [ ] 無消夜 + 無零食 `+15`"
+    )
+
+    if is_weekend:
+        day_label = "假日"
+        max_pts = 20 + 15 + 25  # 固定 + 找團 + 寫作
+        day_tasks = ""
+        weekly = (
+            "**本週任務（本週完成一次即可）**\n"
+            "- [ ] 找團 / 揪人訊息 `+15`\n"
+            "- [ ] 寫作（小說或書摘）`+25`\n"
+            "- [ ] 寫日記 `+15`"
+        )
+    elif is_exercise_day:
+        day_label = "運動日"
+        max_pts = 20 + 15 + 20 + 15 + 25 + 15  # 固定 + 找團 + PMP30 + 運動課 + 寫作 + 日記
+        day_tasks = (
+            "**今日任務（運動日）**\n"
+            "- [ ] 運動課出席（19:00）`+15`\n"
+            "- [ ] PMP 讀書 30 分鐘 `+20`"
+        )
+        weekly = (
+            "**本週任務（本週完成一次即可）**\n"
+            "- [ ] 找團 / 揪人訊息 `+15`\n"
+            "- [ ] 寫作（小說或書摘）`+25`\n"
+            "- [ ] 寫日記 `+15`"
+        )
+    else:
+        day_label = "一般日"
+        max_pts = 20 + 15 + 30 + 10 + 25 + 15  # 固定 + 找團 + PMP45 + 走路 + 寫作 + 日記
+        day_tasks = (
+            "**今日任務（一般日）**\n"
+            "- [ ] PMP 讀書 45 分鐘 `+30`\n"
+            "- [ ] 飯後走路 20 分鐘 `+10`"
+        )
+        weekly = (
+            "**本週任務（本週完成一次即可）**\n"
+            "- [ ] 找團 / 揪人訊息 `+15`\n"
+            "- [ ] 寫作（小說或書摘）`+25`\n"
+            "- [ ] 寫日記 `+15`"
+        )
+
+    parts = [f"> {day_label} · 滿分：+{max_pts} pt（不含連擊）", "", fixed]
+    if day_tasks:
+        parts += ["", day_tasks]
+    parts += ["", weekly]
+
+    return "## ⚡ 今日修煉任務\n\n" + "\n".join(parts)
 
 
 def ask_claude(context, news_candidates):
     prompt = f"""你是崇瑋的個人 AI 助理。今天是 {TODAY}（星期{WEEKDAY}）。
 
-根據下方資料，完成三件事：
+根據下方資料，完成兩件事：
 
 【一】今日代辦推薦（3-5 件）
-主動推薦今天最值得做的事，考量年度目標進度、代辦積壓、星期幾。
+主動推薦今天最值得做的事，考量年度OKR進度、代辦積壓、星期幾。
 格式：
 ① 最重要
 ② 次要
 ③ 其他（可多條）
 💡 一句提醒
 
-【二】小說今日任務
-根據大綱判斷最需推進的章節，給出具體今日寫作目標。
-格式：
-✍️ 今日小說任務：[章節]
-目標：寫完 [具體場景]，約 [字數] 字
-
-【三】今日新聞精選
-從下方各 category 候選新聞中，依篩選條件各選一則，只輸出標題原文（不改寫、不摘要）。
-格式：
-🌍 國際｜[選出的標題原文]
-🇹🇼 台灣政經｜[選出的標題原文]
-🤖 AI 科技｜[選出的標題原文]
+【二】今日新聞精選
+從下方各 category 候選新聞中，依篩選條件各選一則，回傳該則的 ID（方括號內的代號，如 N01）。
+格式（只輸出 ID，不要改寫標題）：
+🌍 國際｜N??
+🇹🇼 台灣政經｜N??
+🤖 AI 科技｜N??
 
 ---
 === Vault 資料 ===
@@ -164,21 +245,52 @@ def ask_claude(context, news_candidates):
     return result.stdout.strip()
 
 
-def attach_links(briefing, raw_links):
-    """把 Claude 輸出的標題原文換成 Markdown 連結"""
-    for title, link in raw_links.items():
-        if title in briefing and link:
-            briefing = briefing.replace(title, f"[{title}]({link})")
-    return briefing
+def load_weekly_writing_task():
+    """讀取本週寫作任務（由 book_fill.py 週一產生）"""
+    path = f"{VAULT}/Skills/book-fill/本週任務.md"
+    try:
+        with open(path, "r", encoding="utf-8") as f:
+            return f.read().strip()
+    except:
+        return ""
 
 
-def write_daily_agenda(briefing):
+def attach_links(briefing, id_map):
+    """把 Claude 回傳的 N01 等 ID 替換成 [標題](連結)"""
+    import re
+    def replace_id(m):
+        nid = m.group(0)
+        if nid in id_map:
+            title, link = id_map[nid]
+            return f"[{title}]({link})" if link else title
+        return nid
+    return re.sub(r'N\d{2}', replace_id, briefing)
+
+
+def write_daily_agenda(briefing, progress_bar, quest_section, weekly_writing):
     path = f"{VAULT}/今日代辦.md"
+
+    writing_block = f"\n---\n\n{weekly_writing}\n" if weekly_writing else ""
+
     content = f"""# 今日代辦
 
 > 每天早上 8:00 自動更新 · [[Skills/daily-notify/README|daily-notify]]
 
 📅 {TODAY}（星期{WEEKDAY}）
+
+---
+
+{progress_bar}
+
+---
+
+{quest_section}
+{writing_block}
+---
+
+## {TODAY} 每日簡報
+
+---
 
 {briefing}
 """
@@ -202,10 +314,14 @@ def archive_agenda(briefing):
 
 if __name__ == "__main__":
     print(f"[{TODAY}] 生成今日代辦中...")
-    ctx              = collect_context()
-    news_str, raw    = collect_news_candidates()
-    briefing         = ask_claude(ctx, news_str)
-    briefing         = attach_links(briefing, raw)
-    write_daily_agenda(briefing)
+    progress       = load_progress()
+    progress_bar   = build_progress_bar(progress)
+    quest_section  = build_quest_section()
+    weekly_writing = load_weekly_writing_task()
+    ctx            = collect_context()
+    news_str, raw  = collect_news_candidates()
+    briefing       = ask_claude(ctx, news_str)
+    briefing       = attach_links(briefing, raw)
+    write_daily_agenda(briefing, progress_bar, quest_section, weekly_writing)
     archive_agenda(briefing)
     print("完成")

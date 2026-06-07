@@ -1,5 +1,3 @@
-# Yuval Noah Harari
-
 > 國籍：[[Authors/Nationalities/以色列作家|以色列]]
 與其說他是歷史學家，不如說他是一位思想家，哲學家。
 

@@ -1,5 +1,3 @@
-# 專案：Claude Bot 整合
-
 > 隸屬於 [[CLAUDE]] · [[Projects/instructions|Projects 說明]] · 參考：[[資源庫/參考資料/技術方法論|第二大腦教學影片]]
 
 ## 目標
@@ -13,7 +11,7 @@
 用戶（LINE / Discord）
     → Webhook 伺服器
     → Claude API
-    → 回覆用戶 + 存入 Obsidian
+    → 回覆用戶 + 存入 ian
 ```
 
 ## 進度

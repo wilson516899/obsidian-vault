@@ -1,18 +1,18 @@
 #!/usr/bin/env python3
 """
-每日書摘推薦腳本
-從 圖書館/ 隨機挑一本沒有筆記的書，附加到今日代辦末尾
-提醒使用者自己去填，不自動生成內容
+每週寫作推薦腳本（週一執行）
+同時推薦：圖書館書摘 + 小說章節
+寫入 Skills/book-fill/本週任務.md，由 notify.py 每天讀取帶入今日代辦
 """
 
 import os, re, glob, random
 from datetime import datetime
 
-VAULT   = os.environ.get(
+VAULT = os.environ.get(
     "VAULT_PATH",
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
-TODAY = datetime.now().strftime("%Y-%m-%d")
+TODAY = datetime.now()
 
 
 def read(path):
@@ -21,6 +21,11 @@ def read(path):
             return f.read()
     except:
         return ""
+
+
+def is_monday():
+    """只在週一執行（weekday() == 0）"""
+    return TODAY.weekday() == 0
 
 
 def get_book_name(content):
@@ -42,17 +47,67 @@ def has_no_notes(content):
     return len(body) < 30
 
 
-def append_to_agenda(book_name, book_path):
-    agenda_path = f"{VAULT}/今日代辦.md"
-    content = read(agenda_path)
-    link = f"[[圖書館/{os.path.basename(book_path).replace('.md', '')}|{book_name}]]"
-    note = f"\n---\n\n📚 **今日書摘任務**\n《{link}》還沒有你的閱讀筆記，今天花 10 分鐘填一段心得吧。\n"
-    with open(agenda_path, "a", encoding="utf-8") as f:
-        f.write(note)
-    print(f"已推薦：《{book_name}》")
+def get_novel_task():
+    """從小說大綱取得當前章節任務"""
+    outline_path = f"{VAULT}/創作小說/大綱.md"
+    content = read(outline_path)
+    # 抓第一個未完成章節（簡單抓包含「第」的行）
+    for line in content.split("\n"):
+        if "第" in line and ("章" in line or "幕" in line):
+            return line.strip().lstrip("#").strip()
+    return "繼續推進小說進度"
+
+
+def write_weekly_task(book_name, book_path):
+    """將本週寫作任務寫入獨立檔案，供 notify.py 每天讀取"""
+    out_path   = f"{VAULT}/Skills/book-fill/本週任務.md"
+    link       = f"[[圖書館/{os.path.basename(book_path).replace('.md', '')}|{book_name}]]"
+    novel_task = get_novel_task()
+    week_str   = TODAY.strftime("%Y-W%W")
+
+    content = (
+        f"## ✍️ 本週寫作任務（{week_str}）\n\n"
+        f"**📚 書摘推薦**\n"
+        f"《{link}》還沒有你的閱讀筆記，這週花 10 分鐘填一段心得吧。\n\n"
+        f"**🖊️ 小說推進**\n"
+        f"本週小說任務：{novel_task}\n"
+    )
+
+    with open(out_path, "w", encoding="utf-8") as f:
+        f.write(content)
+    print(f"本週任務已寫入：{out_path}")
+    print(f"書摘推薦：《{book_name}》")
+    print(f"小說任務：{novel_task}")
+
+
+def sync_status():
+    """掃所有書檔：有大綱內容但狀態仍是待確認 → 自動改成已讀"""
+    book_files = [
+        p for p in glob.glob(f"{VAULT}/圖書館/*.md")
+        if os.path.basename(p) != "instructions.md"
+    ]
+    updated = []
+    for path in book_files:
+        content = read(path)
+        if "狀態: 待確認" in content and not has_no_notes(content):
+            new_content = content.replace("狀態: 待確認", "狀態: 已讀", 1)
+            with open(path, "w", encoding="utf-8") as f:
+                f.write(new_content)
+            name = os.path.splitext(os.path.basename(path))[0]
+            updated.append(name)
+    if updated:
+        print(f"狀態同步：{len(updated)} 本改為已讀 → {', '.join(updated)}")
+    else:
+        print("狀態同步：無需更新")
 
 
 def main():
+    if not is_monday():
+        print(f"今天是週{TODAY.weekday()+1}，非週一，跳過執行。")
+        return
+
+    sync_status()
+
     book_files = [
         p for p in glob.glob(f"{VAULT}/圖書館/*.md")
         if os.path.basename(p) != "instructions.md"
@@ -63,12 +118,12 @@ def main():
         print("所有書籍都有筆記了！")
         return
 
-    chosen  = random.choice(unfilled)
+    chosen = random.choice(unfilled)
     content = read(chosen)
-    name    = get_book_name(content)
+    name = get_book_name(content) or os.path.splitext(os.path.basename(chosen))[0]
 
-    print(f"今日推薦補齊：《{name}》（剩餘 {len(unfilled)} 本待填）")
-    append_to_agenda(name, chosen)
+    print(f"本週推薦補齊：《{name}》（剩餘 {len(unfilled)} 本待填）")
+    write_weekly_task(name, chosen)
 
 
 if __name__ == "__main__":

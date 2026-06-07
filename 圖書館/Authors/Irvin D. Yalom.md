@@ -1,5 +1,3 @@
-# Irvin D. Yalom
-
 > 國籍：[[Authors/Nationalities/美國作家|美國]]
 [[圖書館/心理學/存在主義|1920-1940存在主義]]
 

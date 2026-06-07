@@ -1,1 +1,0 @@
-# L'élégance du hérisson

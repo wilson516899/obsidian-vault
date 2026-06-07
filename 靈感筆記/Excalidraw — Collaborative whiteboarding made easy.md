@@ -11,6 +11,4 @@ Description: Excalidraw is a virtual collaborative whiteboard tool that lets you
 Image:
     - files\excalidraw_com_icon.png
 ---
-# Excalidraw — Collaborative whiteboarding made easy
-
 Excalidraw is a virtual collaborative whiteboard tool that lets you easily sketch diagrams that have a hand-drawn feel to them.

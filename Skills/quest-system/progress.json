@@ -1,0 +1,328 @@
+{
+  "total_pts": 58,
+  "streak": 0,
+  "last_updated": "2026-06-06",
+  "current_goal": {
+    "name": "兩天一夜旅行",
+    "target_pts": 1500
+  },
+  "milestones_completed": [
+    {
+      "id": "quest_system_online",
+      "name": "修煉積分系統上線",
+      "pts": 200,
+      "date": "2026-05-12"
+    },
+    {
+      "id": "experience_date",
+      "name": "完成一次體驗約會",
+      "pts": 100,
+      "date": "2026-06-01"
+    }
+  ],
+  "total_pmp_minutes": 45,
+  "weekly_completed": {
+    "2026-W19": [],
+    "2026-W20": [],
+    "2026-W21": [],
+    "2026-W22": [
+      "找團 / 揪人訊息",
+      "寫日記"
+    ]
+  },
+  "daily_log": [
+    {
+      "date": "2026-05-12",
+      "pts": 242,
+      "base_pts": 40,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.3,
+      "tasks_done": [
+        "記體重",
+        "無消夜",
+        "無零食",
+        "運動課出席",
+        "修煉積分系統上線（里程碑 +200）"
+      ]
+    },
+    {
+      "date": "2026-05-13",
+      "pts": 9,
+      "base_pts": 5,
+      "streak_bonus": 4,
+      "streak": 2,
+      "weight_kg": 76.2,
+      "tasks_done": [
+        "記錄體重"
+      ]
+    },
+    {
+      "date": "2026-05-14",
+      "pts": 22,
+      "base_pts": 20,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.5,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食"
+      ]
+    },
+    {
+      "date": "2026-05-15",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.4,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-05-16",
+      "pts": 7,
+      "base_pts": 5,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 75.2,
+      "tasks_done": [
+        "記錄體重"
+      ]
+    },
+    {
+      "date": "2026-05-17",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-18",
+      "pts": 62,
+      "base_pts": 60,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.1,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "PMP 讀書 45 分鐘",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-05-19",
+      "pts": 37,
+      "base_pts": 35,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.2,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        ""
+      ]
+    },
+    {
+      "date": "2026-05-20",
+      "pts": 17,
+      "base_pts": 15,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.2,
+      "tasks_done": [
+        "記錄體重",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-05-21",
+      "pts": 7,
+      "base_pts": 5,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.2,
+      "tasks_done": [
+        "記錄體重"
+      ]
+    },
+    {
+      "date": "2026-05-22",
+      "pts": 22,
+      "base_pts": 20,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.1,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食"
+      ]
+    },
+    {
+      "date": "2026-05-23",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-24",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-25",
+      "pts": 12,
+      "base_pts": 10,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": null,
+      "tasks_done": [
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-05-26",
+      "pts": 17,
+      "base_pts": 15,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": null,
+      "tasks_done": [
+        ""
+      ]
+    },
+    {
+      "date": "2026-05-27",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-28",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-29",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-30",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-05-31",
+      "pts": 7,
+      "base_pts": 5,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 78.1,
+      "tasks_done": [
+        "記錄體重"
+      ]
+    },
+    {
+      "date": "2026-06-01",
+      "pts": 17,
+      "base_pts": 15,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.0,
+      "tasks_done": [
+        "記錄體重",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-06-02",
+      "pts": 22,
+      "base_pts": 20,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.1,
+      "tasks_done": [
+        "記錄體重",
+        ""
+      ]
+    },
+    {
+      "date": "2026-06-03",
+      "pts": 17,
+      "base_pts": 15,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.7,
+      "tasks_done": [
+        "記錄體重",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-06-04",
+      "pts": 77,
+      "base_pts": 75,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.5,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "找團 / 揪人訊息",
+        "",
+        "寫日記"
+      ]
+    },
+    {
+      "date": "2026-06-05",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.6,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-06-06",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "tasks_done": []
+    }
+  ]
+}

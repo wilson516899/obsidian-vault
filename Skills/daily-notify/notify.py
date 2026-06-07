@@ -96,7 +96,7 @@ def extract_daily_note_summary(content):
     parts = []
 
     # 修煉任務區塊（checkbox 完成狀況）
-    quest_match = re.search(r'(## ⚡ 今日修煉任務.+?)(?=\n## |\n---\n##|\Z)', content, re.DOTALL)
+    quest_match = re.search(r'(## ⚡ 今日修煉任務.+?)(?=\n---|\n## |\Z)', content, re.DOTALL)
     if quest_match:
         parts.append(quest_match.group(1).strip())
 
@@ -172,11 +172,29 @@ def build_progress_bar(progress):
     )
 
 
+def get_weekly_done():
+    """從 progress.json 讀本週已完成的週任務名稱"""
+    progress = load_progress()
+    iso_week = datetime.now().strftime("%Y-W%W")
+    return progress.get("weekly_completed", {}).get(iso_week, [])
+
+
+def weekly_checkbox(label, pts, weekly_done):
+    """產生週任務 checkbox：本週已完成則標示 ✅"""
+    keywords = ["找團", "揪人", "寫作", "書摘", "寫日記"]
+    already = any(kw in label for kw in keywords for done in weekly_done if kw in done)
+    if already:
+        return f"- [x] ~~{label}~~ `+{pts}` ✅ 本週已完成"
+    return f"- [ ] {label} `+{pts}`"
+
+
 def build_quest_section():
     """根據今天星期幾產生對應的修煉任務 checkbox"""
     # 0=Mon,1=Tue,2=Wed,3=Thu,4=Fri,5=Sat,6=Sun
     is_exercise_day = DOW in [1, 3]   # 週二、週四
     is_weekend      = DOW in [5, 6]   # 週六、週日
+
+    weekly_done = get_weekly_done()
 
     fixed = (
         "**固定任務**\n"
@@ -184,16 +202,15 @@ def build_quest_section():
         "- [ ] 無消夜 + 無零食 `+15`"
     )
 
+    w_hunt   = weekly_checkbox("找團 / 揪人訊息", 15, weekly_done)
+    w_write  = weekly_checkbox("寫作（小說或書摘）", 25, weekly_done)
+    w_diary  = weekly_checkbox("寫日記", 15, weekly_done)
+
     if is_weekend:
         day_label = "假日"
         max_pts = 20 + 15 + 25  # 固定 + 找團 + 寫作
         day_tasks = ""
-        weekly = (
-            "**本週任務（本週完成一次即可）**\n"
-            "- [ ] 找團 / 揪人訊息 `+15`\n"
-            "- [ ] 寫作（小說或書摘）`+25`\n"
-            "- [ ] 寫日記 `+15`"
-        )
+        weekly = f"**本週任務（本週完成一次即可）**\n{w_hunt}\n{w_write}\n{w_diary}"
     elif is_exercise_day:
         day_label = "運動日"
         max_pts = 20 + 15 + 20 + 15 + 25 + 15  # 固定 + 找團 + PMP30 + 運動課 + 寫作 + 日記
@@ -202,12 +219,7 @@ def build_quest_section():
             "- [ ] 運動課出席（19:00）`+15`\n"
             "- [ ] PMP 讀書 30 分鐘 `+20`"
         )
-        weekly = (
-            "**本週任務（本週完成一次即可）**\n"
-            "- [ ] 找團 / 揪人訊息 `+15`\n"
-            "- [ ] 寫作（小說或書摘）`+25`\n"
-            "- [ ] 寫日記 `+15`"
-        )
+        weekly = f"**本週任務（本週完成一次即可）**\n{w_hunt}\n{w_write}\n{w_diary}"
     else:
         day_label = "一般日"
         max_pts = 20 + 15 + 30 + 10 + 25 + 15  # 固定 + 找團 + PMP45 + 走路 + 寫作 + 日記
@@ -216,12 +228,7 @@ def build_quest_section():
             "- [ ] PMP 讀書 45 分鐘 `+30`\n"
             "- [ ] 飯後走路 20 分鐘 `+10`"
         )
-        weekly = (
-            "**本週任務（本週完成一次即可）**\n"
-            "- [ ] 找團 / 揪人訊息 `+15`\n"
-            "- [ ] 寫作（小說或書摘）`+25`\n"
-            "- [ ] 寫日記 `+15`"
-        )
+        weekly = f"**本週任務（本週完成一次即可）**\n{w_hunt}\n{w_write}\n{w_diary}"
 
     parts = [f"> {day_label} · 滿分：+{max_pts} pt（不含連擊）", "", fixed]
     if day_tasks:
@@ -289,6 +296,26 @@ def attach_links(briefing, id_map):
     return re.sub(r'N\d{2}', replace_id, briefing)
 
 
+def update_homepage():
+    """更新主頁.md 的今日 Daily Note 連結"""
+    homepage = f"{VAULT}/主頁.md"
+    try:
+        with open(homepage, "r", encoding="utf-8") as f:
+            content = f.read()
+        import re
+        updated = re.sub(
+            r'\[\[Daily Note/\d{4}-\d{2}-\d{2}\|今天的 Daily Note\]\]',
+            f'[[Daily Note/{TODAY}|今天的 Daily Note]]',
+            content
+        )
+        if updated != content:
+            with open(homepage, "w", encoding="utf-8") as f:
+                f.write(updated)
+            print(f"主頁.md 今日連結已更新：{TODAY}")
+    except Exception as e:
+        print(f"主頁更新失敗（非阻斷）：{e}")
+
+
 def write_daily_note(briefing, progress_bar, quest_section, weekly_writing):
     path = f"{VAULT}/Daily Note/{TODAY}.md"
     os.makedirs(os.path.dirname(path), exist_ok=True)
@@ -334,4 +361,5 @@ if __name__ == "__main__":
     briefing       = ask_claude(ctx, news_str)
     briefing       = attach_links(briefing, raw)
     write_daily_note(briefing, progress_bar, quest_section, weekly_writing)
+    update_homepage()
     print("完成")

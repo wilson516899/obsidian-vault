@@ -1,24 +1,31 @@
 {
 	"nodes":[
-		{"id":"title","type":"text","text":"# 崇瑋的第二大腦\n### 知識流動示意圖","x":-300,"y":-820,"width":600,"height":110},
-		{"id":"in_thought","type":"text","text":"💭 想法 · 靈感 · 日常觀察","x":-680,"y":-650,"width":250,"height":60},
-		{"id":"in_book","type":"text","text":"📖 書籍 · 閱讀 · 作者","x":-280,"y":-650,"width":250,"height":60},
-		{"id":"in_tool","type":"text","text":"🌐 網路資料 · 工具 · 技術","x":120,"y":-650,"width":250,"height":60},
-		{"id":"lingan","type":"text","text":"## 💡 [[靈感筆記/instructions|靈感筆記]]\n\n隨時捕捉，不管格式\n先寫下來，之後再整理","x":-680,"y":-530,"width":280,"height":160,"color":"3"},
-		{"id":"library","type":"text","text":"## 📚 [[圖書館/instructions|圖書館]]\n\n書籍閱讀筆記與心得\n21 已讀 · 85 待確認","x":-280,"y":-530,"width":280,"height":160,"color":"4"},
-		{"id":"resources","type":"text","text":"## 🗃️ [[資源庫/參考資料/index|資源庫]]\n\nAI 工具 · 技術方法論\n專案構想 · 外部資源","x":120,"y":-530,"width":280,"height":160,"color":"5"},
-		{"id":"diary","type":"text","text":"## 📓 [[日記/instructions|日記]]\n\n個人抒發 · 心得 · 感受\n私人空間，Claude 不讀取","x":490,"y":-530,"width":260,"height":160,"color":"1"},
-		{"id":"daily","type":"text","text":"## 🤖 [[Daily Notes/instructions|Daily Notes]]\n\nClaude 的工作日誌\n每日進度與短期記憶","x":490,"y":-300,"width":260,"height":160},
-		{"id":"perm","type":"text","text":"## 📌 [[永久筆記/instructions|永久筆記]]\n\n用自己的話寫的核心知識。靈感與閱讀精煉後沉澱於此，每篇只談一個核心概念，盡量連結相關筆記。","x":-680,"y":-300,"width":680,"height":160,"color":"6"},
-		{"id":"novel","type":"text","text":"## ✍️ [[創作小說/README|創作小說]]\n\n知識與靈感的具體產出\n\n目前：鳳火祭 · 那是哪都不存在的開始","x":-480,"y":-70,"width":380,"height":160,"color":"2"},
-		{"id":"steps","type":"text","text":"**📋 日常使用步驟**\n\n**① 捕捉** — 有想法 → 靈感筆記　　讀書 → 圖書館　　看到工具/方法 → 資源庫\n**② 整理** — 定期消化靈感筆記，把精華用自己的話寫進永久筆記\n**③ 產出** — 從永久筆記汲取靈感，發展小說創作\n**④ 記錄** — 日記寫個人狀態；Daily Notes 給 Claude 追蹤工作進度","x":-680,"y":170,"width":900,"height":190}
+		{"id":"title","type":"text","text":"# 崇瑋的第二大腦\n### 知識流動 · 自動化系統","x":-320,"y":-920,"width":640,"height":100},
+		{"id":"in_thought","type":"text","text":"💭 想法 · 靈感 · 日常觀察","x":-720,"y":-760,"width":240,"height":55},
+		{"id":"in_book","type":"text","text":"📖 書籍 · 閱讀","x":-400,"y":-760,"width":200,"height":55},
+		{"id":"in_tool","type":"text","text":"🌐 工具 · 技術 · 外部資源","x":-120,"y":-760,"width":230,"height":55},
+		{"id":"in_auto","type":"text","text":"⏰ cron 08:00 每日自動觸發","x":200,"y":-760,"width":250,"height":55},
+		{"id":"lingan","type":"text","text":"## 💡 [[靈感筆記/instructions|靈感筆記]]\n\n隨時捕捉，不管格式\n先寫下來，之後再整理","x":-720,"y":-650,"width":260,"height":150,"color":"3"},
+		{"id":"library","type":"text","text":"## 📚 [[圖書館/instructions|圖書館]]\n\n書籍閱讀筆記與心得\n21 已讀 · 85 待確認","x":-400,"y":-650,"width":240,"height":150,"color":"4"},
+		{"id":"resources","type":"text","text":"## 🗃️ [[資源庫/參考資料/index|資源庫]]\n\nAI 工具 · 技術方法論\n專案構想 · 外部資源","x":-120,"y":-650,"width":230,"height":150,"color":"5"},
+		{"id":"daily_note","type":"text","text":"## 📋 [[Daily Note/|Daily Note]]\n\n每天自動產出\n任務清單 · 修煉進度\n新聞簡報 · 隨手記","x":200,"y":-650,"width":250,"height":150,"color":"2"},
+		{"id":"diary","type":"text","text":"## 📓 [[日記/instructions|日記]]\n\n個人抒發 · 感受\n私人，Claude 不讀","x":520,"y":-650,"width":210,"height":150,"color":"1"},
+		{"id":"perm","type":"text","text":"## 📌 [[永久筆記/instructions|永久筆記]]\n\n用自己的話寫的核心知識\n靈感與閱讀精煉後沉澱於此","x":-720,"y":-430,"width":640,"height":130,"color":"6"},
+		{"id":"claude_note","type":"text","text":"## 🤖 [[Claude Note/|Claude Note]]\n\nClaude 的系統記憶\n月份 Changelog，跨 session","x":200,"y":-430,"width":250,"height":130},
+		{"id":"accounting","type":"text","text":"## 💰 [[記帳/|記帳]]\n\n每月從 Budget App\n自動匯入記帳報告","x":520,"y":-430,"width":210,"height":130},
+		{"id":"novel","type":"text","text":"## ✍️ [[創作小說/README|創作小說]]\n\n知識與靈感的具體產出\n目前：第七章《灰與輝》","x":-500,"y":-230,"width":360,"height":130,"color":"2"},
+		{"id":"quest","type":"text","text":"## ⚡ [[Skills/quest-system/修煉進度|修煉積分]]\n\n任務完成 → 累積積分\n目標：兩天一夜旅行","x":200,"y":-230,"width":250,"height":130},
+		{"id":"steps","type":"text","text":"**📋 日常使用**\n\n**① 早上** — 打開 Daily Note，看任務清單 · 新聞 · 積分進度\n**② 捕捉** — 想法 → 靈感筆記　讀書 → 圖書館　看到工具 → 資源庫\n**③ 整理** — 定期消化靈感筆記，精華寫進永久筆記\n**④ 產出** — 從永久筆記汲取，發展小說創作\n**⑤ 月初** — 執行 budget-import，匯入上月記帳","x":-720,"y":10,"width":900,"height":175}
 	],
 	"edges":[
 		{"id":"e1","fromNode":"in_thought","fromSide":"bottom","toNode":"lingan","toSide":"top"},
 		{"id":"e2","fromNode":"in_book","fromSide":"bottom","toNode":"library","toSide":"top"},
 		{"id":"e3","fromNode":"in_tool","fromSide":"bottom","toNode":"resources","toSide":"top"},
-		{"id":"e4","fromNode":"lingan","fromSide":"bottom","toNode":"perm","toSide":"top"},
-		{"id":"e5","fromNode":"library","fromSide":"bottom","toNode":"perm","toSide":"top"},
-		{"id":"e6","fromNode":"perm","fromSide":"bottom","toNode":"novel","toSide":"top"}
+		{"id":"e4","fromNode":"in_auto","fromSide":"bottom","toNode":"daily_note","toSide":"top"},
+		{"id":"e5","fromNode":"lingan","fromSide":"bottom","toNode":"perm","toSide":"top"},
+		{"id":"e6","fromNode":"library","fromSide":"bottom","toNode":"perm","toSide":"top"},
+		{"id":"e7","fromNode":"perm","fromSide":"bottom","toNode":"novel","toSide":"top"},
+		{"id":"e8","fromNode":"daily_note","fromSide":"bottom","toNode":"claude_note","toSide":"top"},
+		{"id":"e9","fromNode":"daily_note","fromSide":"bottom","toNode":"quest","toSide":"top"}
 	]
 }

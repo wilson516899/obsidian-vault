@@ -13,12 +13,12 @@ VAULT = os.environ.get(
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
 
+TODAY     = datetime.now().strftime("%Y-%m-%d")
+YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+
 PROGRESS_PATH = f"{VAULT}/Skills/quest-system/progress.json"
 AGENDA_PATH   = f"{VAULT}/Daily Note/{YESTERDAY}.md"
 TRACKER_PATH  = f"{VAULT}/Skills/quest-system/修煉進度.md"
-
-TODAY     = datetime.now().strftime("%Y-%m-%d")
-YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
 
 # 里程碑定義
 MILESTONES = [

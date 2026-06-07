@@ -14,7 +14,7 @@ VAULT = os.environ.get(
 )
 
 PROGRESS_PATH = f"{VAULT}/Skills/quest-system/progress.json"
-AGENDA_PATH   = f"{VAULT}/今日代辦.md"
+AGENDA_PATH   = f"{VAULT}/Daily Note/{YESTERDAY}.md"
 TRACKER_PATH  = f"{VAULT}/Skills/quest-system/修煉進度.md"
 
 TODAY     = datetime.now().strftime("%Y-%m-%d")
@@ -206,7 +206,7 @@ def main():
 
     content = read(AGENDA_PATH)
     if not content:
-        print("今日代辦讀取失敗，跳過")
+        print(f"Daily Note 讀取失敗（{AGENDA_PATH}），跳過")
         return
 
     # 解析 checkbox

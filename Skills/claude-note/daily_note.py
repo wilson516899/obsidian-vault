@@ -20,7 +20,7 @@ WEEKDAY = ["一", "二", "三", "四", "五", "六", "日"][datetime.now().weekd
 
 AGENDA_PATH   = f"{VAULT}/今日代辦.md"
 PROGRESS_PATH = f"{VAULT}/Skills/quest-system/progress.json"
-NOTE_PATH     = f"{VAULT}/Daily Notes/{TODAY}.md"
+NOTE_PATH     = f"{VAULT}/Claude Note/{TODAY}.md"
 LIBRARY_PATH  = f"{VAULT}/圖書館"
 
 

@@ -2,7 +2,7 @@
 """
 每日代辦通知腳本
 由 cron 每天早上 8 點觸發，生成今日建議任務
-寫入固定檔案（手機 Obsidian 釘選查看）+ 代辦歷史歸檔
+直接寫入 Daily Note/YYYY-MM-DD.md（整合今日代辦 + 歸檔為一）
 """
 
 import os, subprocess, glob, json, urllib.request
@@ -90,14 +90,36 @@ def collect_news_candidates():
     return "\n\n".join(blocks), id_map
 
 
+def extract_daily_note_summary(content):
+    """擷取 checkbox 任務完成狀況 + 隨手記，過濾簡報/新聞噪音"""
+    import re
+    parts = []
+
+    # 修煉任務區塊（checkbox 完成狀況）
+    quest_match = re.search(r'(## ⚡ 今日修煉任務.+?)(?=\n## |\n---\n##|\Z)', content, re.DOTALL)
+    if quest_match:
+        parts.append(quest_match.group(1).strip())
+
+    # 隨手記區塊
+    notes_match = re.search(r'## 隨手記\n+(.*?)(?=\n## |\Z)', content, re.DOTALL)
+    if notes_match:
+        notes = notes_match.group(1).strip()
+        if notes:
+            parts.append(f"## 隨手記\n{notes}")
+
+    return "\n\n".join(parts)
+
+
 def collect_context():
     parts = []
 
-    for i in range(1, 4):
+    for i in range(1, 8):
         date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
-        dn = read(f"{VAULT}/Daily Notes/{date}.md")
+        dn = read(f"{VAULT}/Daily Note/{date}.md")
         if dn:
-            parts.append(f"=== {date} 紀錄 ===\n{dn[:800]}")
+            summary = extract_daily_note_summary(dn)
+            if summary:
+                parts.append(f"=== {date} ===\n{summary}")
 
     plan = read(f"{VAULT}/靈感筆記/2026年計畫.md")
     if plan:
@@ -267,16 +289,15 @@ def attach_links(briefing, id_map):
     return re.sub(r'N\d{2}', replace_id, briefing)
 
 
-def write_daily_agenda(briefing, progress_bar, quest_section, weekly_writing):
-    path = f"{VAULT}/今日代辦.md"
+def write_daily_note(briefing, progress_bar, quest_section, weekly_writing):
+    path = f"{VAULT}/Daily Note/{TODAY}.md"
+    os.makedirs(os.path.dirname(path), exist_ok=True)
 
     writing_block = f"\n---\n\n{weekly_writing}\n" if weekly_writing else ""
 
-    content = f"""# 今日代辦
+    content = f"""# {TODAY}（星期{WEEKDAY}）
 
 > 每天早上 8:00 自動更新 · [[Skills/daily-notify/README|daily-notify]]
-
-📅 {TODAY}（星期{WEEKDAY}）
 
 ---
 
@@ -288,28 +309,18 @@ def write_daily_agenda(briefing, progress_bar, quest_section, weekly_writing):
 {writing_block}
 ---
 
-## {TODAY} 每日簡報
+## 每日簡報
+
+{briefing}
 
 ---
 
-{briefing}
+## 隨手記
+
 """
     with open(path, "w", encoding="utf-8") as f:
         f.write(content)
-    print(f"今日代辦已寫入：{path}")
-
-
-def archive_agenda(briefing):
-    path = f"{VAULT}/代辦歷史/{TODAY}.md"
-    content = f"""# {TODAY}（星期{WEEKDAY}）代辦記錄
-
-> [[今日代辦|← 今日代辦]]
-
-{briefing}
-"""
-    with open(path, "w", encoding="utf-8") as f:
-        f.write(content)
-    print(f"代辦歷史已歸檔：{path}")
+    print(f"Daily Note 已寫入：{path}")
 
 
 if __name__ == "__main__":
@@ -322,6 +333,5 @@ if __name__ == "__main__":
     news_str, raw  = collect_news_candidates()
     briefing       = ask_claude(ctx, news_str)
     briefing       = attach_links(briefing, raw)
-    write_daily_agenda(briefing, progress_bar, quest_section, weekly_writing)
-    archive_agenda(briefing)
+    write_daily_note(briefing, progress_bar, quest_section, weekly_writing)
     print("完成")

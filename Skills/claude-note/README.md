@@ -1,14 +1,14 @@
 > 隸屬於 [[Skills/instructions|Skills]]
 
-每天晚上 23:00 自動執行，根據當天今日代辦的勾選狀況與積分進度，
-產生該日的 Daily Note，供隔天 notify.py 作為上下文使用。
+每天晚上 23:00 自動執行，根據當天 Daily Note 的勾選狀況與積分進度，
+產生 Claude 工作紀錄，供隔天 notify.py 作為上下文使用。
 
 ---
 
 ## 架構
 
 ```
-Skills/daily-note/
+Skills/claude-note/
 ├── daily_note.py  ← 主腳本
 └── README.md      ← 本檔案
 ```
@@ -18,11 +18,11 @@ Skills/daily-note/
 cron (23:00) → daily_note.py → ① 書籍狀態同步（每天都執行）
                                     掃描 圖書館/*.md
                                     YAML 狀態/日期 → 同步至 blockquote
-                              → ② Daily Note 產生
-                                    若 Daily Notes/{TODAY}.md 已存在 → 跳過
-                                    否則 → 讀 今日代辦.md checkbox
+                              → ② Claude Note 產生
+                                    若 Claude Note/{TODAY}.md 已存在 → 跳過
+                                    否則 → 讀 Daily Note/{TODAY}.md checkbox
                                          → 讀 progress.json
-                                         → 產生日誌 → 寫入
+                                         → 產生工作紀錄 → 寫入
 ```
 
 ---
@@ -31,13 +31,13 @@ cron (23:00) → daily_note.py → ① 書籍狀態同步（每天都執行）
 
 | 情境 | 動作 |
 |------|------|
-| 對話中手動記錄今日工作 | 直接寫 `Daily Notes/{YYYY-MM-DD}.md`；23:00 腳本自動跳過 |
-| 查看某天發生了什麼 | 讀 `Daily Notes/{YYYY-MM-DD}.md` |
+| 對話中手動記錄今日工作 | 直接寫 `Claude Note/{YYYY-MM-DD}.md`；23:00 腳本自動跳過 |
+| 查看某天 Claude 做了什麼 | 讀 `Claude Note/{YYYY-MM-DD}.md` |
 | 調整產生格式 | 編輯 `daily_note.py` 的 `build_note()` 函式 |
 
 ---
 
-## 手動寫 Daily Note 格式
+## Claude Note 格式
 
 記錄 Claude 協助完成的工作（**不是個人日記**）：
 
@@ -63,29 +63,20 @@ cron (23:00) → daily_note.py → ① 書籍狀態同步（每天都執行）
 
 ## 注意事項
 
-- **不覆蓋**：當天 Daily Note 已存在時腳本跳過，手動寫的優先
+- **不覆蓋**：當天 Claude Note 已存在時腳本跳過，手動寫的優先
 - 日期以**對話發生當天**為準，非凌晨跨日後的隔日
 - 自動產生版以任務完成狀況為主，不包含對話細節
 
 ### 附加：書籍狀態同步
 
-每次執行時**一律掃描** `圖書館/*.md`，不受 Daily Note 是否已存在影響。
-
-同步邏輯：書檔的 YAML frontmatter（`狀態`、`閱讀日期`）為資料來源，
-自動更新文章內的 blockquote 顯示，讓兩者保持一致。
-
-```
-YAML: 狀態: 已讀  →  blockquote: > 狀態：已讀
-```
-
-只有實際發生變化的書檔才會寫入，無變化則跳過。
+每次執行時**一律掃描** `圖書館/*.md`，不受 Claude Note 是否已存在影響。
 
 ---
 
 ## 手動執行
 
 ```bash
-python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/daily-note/daily_note.py
+python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/claude-note/daily_note.py
 cat /tmp/daily-note.log
 ```
 
@@ -93,6 +84,6 @@ cat /tmp/daily-note.log
 
 ## 相關連結
 
-- [[今日代辦|今日代辦（輸入來源）]]
+- [[Daily Note/|Daily Note（輸入來源）]]
 - [[Skills/quest-system/README|quest-system（積分資料來源）]]
 - [[Skills/daily-notify/README|daily-notify（下游消費者）]]

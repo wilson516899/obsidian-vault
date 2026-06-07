@@ -1,4 +1,4 @@
-> 隸屬於 [[Skills/instructions|Skills]]
+> 隸屬於 [[Obsidian/Skills/instructions|Skills]]
 
 每天早上 07:55 自動結算昨日任務完成狀況，計算積分與連擊，更新進度紀錄。
 詳細規則與設計邏輯見 [[Skills/quest-system/PRD|PRD]]。
@@ -18,7 +18,7 @@ Skills/quest-system/
 
 **流程：**
 ```
-cron (07:55) → quest.py → 讀取今日代辦.md checkbox
+cron (07:55) → quest.py → 讀取 Daily Note/昨天.md checkbox
                         → 計算積分 + 連擊加成
                         → 寫入 progress.json
                         → 覆寫 修煉進度.md
@@ -50,10 +50,6 @@ cron (07:55) → quest.py → 讀取今日代辦.md checkbox
 
 ```bash
 python3 /mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian/Skills/quest-system/quest.py
-```
-
-查看執行紀錄：
-```bash
 cat /tmp/quest.log
 ```
 
@@ -63,4 +59,4 @@ cat /tmp/quest.log
 
 - [[Skills/quest-system/PRD|積分系統 PRD]]
 - [[Skills/quest-system/修煉進度|修煉進度（目前狀態）]]
-- [[今日代辦|今日代辦（輸入來源）]]
+- [[Daily Note/|Daily Note（輸入來源）]]

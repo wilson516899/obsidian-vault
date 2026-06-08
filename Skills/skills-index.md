@@ -28,5 +28,5 @@
 
 1. 在 `Skills/` 下建立新資料夾 `Skills/xxx/`
 2. 建立 `Skills/xxx/README.md`，內容包含：用途、觸發方式、關鍵檔案、調用時機、注意事項
-3. 在本檔案（instructions.md）加入索引
+3. 在本檔案（skills-index.md）加入索引
 4. 若有 cron 排程，同步更新 `CLAUDE.md`

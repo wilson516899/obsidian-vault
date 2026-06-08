@@ -111,7 +111,7 @@ Wilson 是**分析型人格**，面對問題的第一反應是蒐集資訊 → �
 
 1. **每次對話開始**：先讀這個 CLAUDE.md，了解整體結構
 2. **系統改動相關問題**：讀 `Claude Note/當月系統日誌.md` + `Claude Note/前一月系統日誌.md`
-3. **執行特定任務**：先讀 `Skills/instructions 2.md` 找到對應 skill，再讀該 skill 的 `README.md`
+3. **執行特定任務**：先讀 `Skills/skills-index.md` 找到對應 skill，再讀該 skill 的 `README.md`
 4. **了解我的目標**：讀 `靈感筆記/2026年計畫.md`（OKR + Q2 KR）
 5. **修煉積分相關**：讀 `Skills/quest-system/progress.json` 或 `修煉進度.md`
 6. **小說相關**：讀 `創作小說/大綱.md`
@@ -131,7 +131,7 @@ Wilson 是**分析型人格**，面對問題的第一反應是蒐集資訊 → �
 
 - 節省 Token：只讀當下需要的檔案
 - 所有對話回覆使用繁體中文
-- 有任何技能疑問先查 `Skills/instructions 2.md`，再問我
+- 有任何技能疑問先查 `Skills/skills-index.md`，再問我
 - 不自動填寫使用者應親自完成的內容（書摘、日記等）
 - **閉環原則**：每次對腳本、資料夾結構、自動化流程做出改動後，必須同步更新這份 CLAUDE.md 與 `主頁.md`，確保下次對話開始時的我能讀到正確狀態
 - **新增 Skill 要件**：在 `Skills/` 下建立新資料夾時，必須同步：① 建立 `README.md`（含用途、觸發方式、關鍵檔案、調用時機、注意事項）② 更新 `Skills/instructions.md` 索引

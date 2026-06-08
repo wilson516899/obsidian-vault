@@ -235,7 +235,7 @@ def main():
     # 週任務去重：同一 ISO 週內已計分的任務不重複累計
     iso_week = datetime.strptime(YESTERDAY, "%Y-%m-%d").strftime("%Y-W%W")
     weekly_done = progress.get("weekly_completed", {}).get(iso_week, [])
-    WEEKLY_TASKS = ["找團", "揪人", "寫作", "寫日記"]
+    WEEKLY_TASKS = ["找團", "揪人", "寫作"]
 
     # 計算今日積分（直接加總 checkbox 的 +N，週任務去重）
     base_pts = 0

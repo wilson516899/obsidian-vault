@@ -58,17 +58,26 @@ def get_novel_task():
     return "繼續推進小說進度"
 
 
-def write_weekly_task(book_name, book_path):
+def write_weekly_task(primary_book_name, primary_book_path, extra_books):
     """將本週寫作任務寫入獨立檔案，供 notify.py 每天讀取"""
     out_path   = f"{VAULT}/Skills/book-fill/本週任務.md"
-    link       = f"[[圖書館/{os.path.basename(book_path).replace('.md', '')}|{book_name}]]"
+    link       = f"[[圖書館/{os.path.basename(primary_book_path).replace('.md', '')}|{primary_book_name}]]"
     novel_task = get_novel_task()
     week_str   = TODAY.strftime("%Y-W%W")
+
+    # 額外候補書單（若想多寫一本可從這裡選）
+    extra_lines = ""
+    if extra_books:
+        extra_lines = "\n**📋 本週備選（想多寫可從這裡挑）**\n"
+        for name, path in extra_books:
+            el = f"[[圖書館/{os.path.basename(path).replace('.md', '')}|{name}]]"
+            extra_lines += f"- 《{el}》\n"
 
     content = (
         f"## ✍️ 本週寫作任務（{week_str}）\n\n"
         f"**📚 書摘推薦**\n"
-        f"《{link}》還沒有你的閱讀筆記，這週花 10 分鐘填一段心得吧。\n\n"
+        f"《{link}》還沒有你的閱讀筆記，這週花 10 分鐘填一段心得吧。\n"
+        f"{extra_lines}\n"
         f"**🖊️ 小說推進**\n"
         f"本週小說任務：{novel_task}\n"
     )
@@ -76,7 +85,7 @@ def write_weekly_task(book_name, book_path):
     with open(out_path, "w", encoding="utf-8") as f:
         f.write(content)
     print(f"本週任務已寫入：{out_path}")
-    print(f"書摘推薦：《{book_name}》")
+    print(f"書摘推薦：《{primary_book_name}》")
     print(f"小說任務：{novel_task}")
 
 
@@ -91,6 +100,7 @@ def sync_status():
         content = read(path)
         if "狀態: 待確認" in content and not has_no_notes(content):
             new_content = content.replace("狀態: 待確認", "狀態: 已讀", 1)
+            new_content = new_content.replace("> 狀態：待確認", "> 狀態：已讀", 1)
             with open(path, "w", encoding="utf-8") as f:
                 f.write(new_content)
             name = os.path.splitext(os.path.basename(path))[0]
@@ -118,12 +128,21 @@ def main():
         print("所有書籍都有筆記了！")
         return
 
-    chosen = random.choice(unfilled)
-    content = read(chosen)
-    name = get_book_name(content) or os.path.splitext(os.path.basename(chosen))[0]
+    # 主推薦 1 本 + 備選最多 2 本
+    picks = random.sample(unfilled, min(3, len(unfilled)))
+    primary_path    = picks[0]
+    extra_paths     = picks[1:]
+    primary_content = read(primary_path)
+    primary_name    = get_book_name(primary_content) or os.path.splitext(os.path.basename(primary_path))[0]
 
-    print(f"本週推薦補齊：《{name}》（剩餘 {len(unfilled)} 本待填）")
-    write_weekly_task(name, chosen)
+    extra_books = []
+    for p in extra_paths:
+        c = read(p)
+        n = get_book_name(c) or os.path.splitext(os.path.basename(p))[0]
+        extra_books.append((n, p))
+
+    print(f"本週推薦補齊：《{primary_name}》（剩餘 {len(unfilled)} 本待填）")
+    write_weekly_task(primary_name, primary_path, extra_books)
 
 
 if __name__ == "__main__":

@@ -1,7 +1,7 @@
 {
-  "total_pts": 177,
+  "total_pts": 214,
   "streak": 1,
-  "last_updated": "2026-06-08",
+  "last_updated": "2026-06-09",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -349,6 +349,19 @@
         "無消夜 + 無零食",
         "PMP 讀書 45 分鐘",
         "飯後走路 20 分鐘",
+        ""
+      ]
+    },
+    {
+      "date": "2026-06-09",
+      "pts": 37,
+      "base_pts": 35,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.3,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
         ""
       ]
     }

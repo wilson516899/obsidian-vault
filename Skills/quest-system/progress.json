@@ -1,7 +1,7 @@
 {
-  "total_pts": 214,
+  "total_pts": 285,
   "streak": 1,
-  "last_updated": "2026-06-09",
+  "last_updated": "2026-06-12",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -363,6 +363,42 @@
         "記錄體重",
         "無消夜 + 無零食",
         ""
+      ]
+    },
+    {
+      "date": "2026-06-10",
+      "pts": 22,
+      "base_pts": 20,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.8,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食"
+      ]
+    },
+    {
+      "date": "2026-06-11",
+      "pts": 37,
+      "base_pts": 35,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.2,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        ""
+      ]
+    },
+    {
+      "date": "2026-06-12",
+      "pts": 12,
+      "base_pts": 10,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": null,
+      "tasks_done": [
+        "飯後走路 20 分鐘"
       ]
     }
   ]

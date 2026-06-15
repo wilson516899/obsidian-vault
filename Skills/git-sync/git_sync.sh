@@ -6,9 +6,9 @@
 GIT_DIR="/mnt/c/Users/崇瑋/Desktop/Claude/.git"
 WORK_TREE="/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 DATE=$(date +%Y-%m-%d)
-LOG="/tmp/git-sync.log"
+LOG="/mnt/c/Users/崇瑋/Desktop/obsidian-tasks/run.log"
 
-echo "[${DATE} $(date +%H:%M:%S)] git_sync.sh 開始" >> "$LOG"
+echo "[${DATE} $(date +%H:%M:%S)] [cron] git_sync.sh 開始" >> "$LOG"
 
 # 確認有無變更
 if git --git-dir="$GIT_DIR" --work-tree="$WORK_TREE" diff --quiet && \

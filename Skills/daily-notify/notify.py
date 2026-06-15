@@ -13,9 +13,10 @@ VAULT   = os.environ.get(
     "VAULT_PATH",
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
-TODAY   = datetime.now().strftime("%Y-%m-%d")
-WEEKDAY = ["一", "二", "三", "四", "五", "六", "日"][datetime.now().weekday()]
-DOW     = datetime.now().weekday()  # 0=Mon, 1=Tue, ..., 6=Sun
+_now    = datetime.strptime(os.environ["TARGET_DATE"], "%Y-%m-%d") if os.environ.get("TARGET_DATE") else datetime.now()
+TODAY   = _now.strftime("%Y-%m-%d")
+WEEKDAY = ["一", "二", "三", "四", "五", "六", "日"][_now.weekday()]
+DOW     = _now.weekday()  # 0=Mon, 1=Tue, ..., 6=Sun
 
 NEWS_SOURCES = {
     "🌍 國際": {

@@ -13,8 +13,9 @@ VAULT = os.environ.get(
     "/mnt/c/Users/崇瑋/iCloudDrive/iCloud~md~obsidian/Obsidian"
 )
 
-TODAY     = datetime.now().strftime("%Y-%m-%d")
-YESTERDAY = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+_now      = datetime.strptime(os.environ["TARGET_DATE"], "%Y-%m-%d") if os.environ.get("TARGET_DATE") else datetime.now()
+TODAY     = _now.strftime("%Y-%m-%d")
+YESTERDAY = (_now - timedelta(days=1)).strftime("%Y-%m-%d")
 
 PROGRESS_PATH = f"{VAULT}/Skills/quest-system/progress.json"
 AGENDA_PATH   = f"{VAULT}/Daily Note/{YESTERDAY}.md"

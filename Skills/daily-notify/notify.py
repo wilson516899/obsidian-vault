@@ -267,7 +267,7 @@ def ask_claude(context, news_candidates):
 {news_candidates}"""
 
     result = subprocess.run(
-        ["claude", "--print", prompt],
+        ["/mnt/c/Users/崇瑋/AppData/Roaming/npm/claude", "--print", prompt],
         capture_output=True, text=True, timeout=90
     )
     if result.returncode != 0:

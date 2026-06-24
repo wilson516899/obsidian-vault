@@ -180,10 +180,11 @@ def get_weekly_done():
     return progress.get("weekly_completed", {}).get(iso_week, [])
 
 
-def weekly_checkbox(label, pts, weekly_done):
+def weekly_checkbox(label, pts, weekly_done, keywords=None):
     """產生週任務 checkbox：本週已完成則標示 ✅"""
-    keywords = ["找團", "揪人"]
-    already = any(kw in label for kw in keywords for done in weekly_done if kw in done)
+    if keywords is None:
+        keywords = [label[:3]]
+    already = any(kw in done for kw in keywords for done in weekly_done)
     if already:
         return f"- [x] ~~{label}~~ `+{pts}` ✅ 本週已完成"
     return f"- [ ] {label} `+{pts}`"
@@ -200,21 +201,23 @@ def build_quest_section():
     fixed = (
         "**固定任務**\n"
         "- [ ] 記錄體重 `+5` → 今日體重：\n"
+        "- [ ] 無功受祿記錄 `+10` → 今日：\n"
         "- [ ] 無消夜 + 無零食 `+15`\n"
         "- [ ] 寫日記 `+15`"
     )
 
-    w_hunt  = weekly_checkbox("找團 / 揪人訊息", 15, weekly_done)
+    w_hunt   = weekly_checkbox("找團 / 揪人訊息", 15, weekly_done, keywords=["找團", "揪人"])
+    w_affirm = weekly_checkbox("說出一次成就感", 20, weekly_done, keywords=["說出"])
     # 寫作不做去重：每寫一本都給分，故直接輸出未勾選 checkbox
-    w_write = "- [ ] 寫作（小說或書摘）`+25`（每完成一本各給分）"
+    w_write  = "- [ ] 寫作（小說或書摘）`+25`（每完成一本各給分）"
 
     if is_weekend:
         day_label = "假日"
-        max_pts = 20 + 15 + 15 + 25  # 固定 + 寫作一次（實際可多次）
+        max_pts = 45 + 15 + 20 + 25  # 固定(45) + 找團 + 說出 + 寫作
         day_tasks = ""
     elif is_exercise_day:
         day_label = "運動日"
-        max_pts = 20 + 15 + 15 + 20 + 15 + 25  # 固定 + PMP30 + 運動課 + 寫作
+        max_pts = 45 + 20 + 15 + 15 + 20 + 25  # 固定(45) + PMP30 + 運動課 + 找團 + 說出 + 寫作
         day_tasks = (
             "**今日任務（運動日）**\n"
             "- [ ] 運動課出席（19:00）`+15`\n"
@@ -222,14 +225,14 @@ def build_quest_section():
         )
     else:
         day_label = "一般日"
-        max_pts = 20 + 15 + 15 + 30 + 10 + 25  # 固定 + PMP45 + 走路 + 寫作
+        max_pts = 45 + 30 + 10 + 15 + 20 + 25  # 固定(45) + PMP45 + 走路 + 找團 + 說出 + 寫作
         day_tasks = (
             "**今日任務（一般日）**\n"
             "- [ ] PMP 讀書 45 分鐘 `+30`\n"
             "- [ ] 飯後走路 20 分鐘 `+10`"
         )
 
-    weekly = f"**本週任務**\n{w_hunt}\n{w_write}"
+    weekly = f"**本週任務**\n{w_hunt}\n{w_affirm}\n{w_write}"
 
     parts = [f"> {day_label} · 滿分：+{max_pts} pt（不含連擊）", "", fixed]
     if day_tasks:

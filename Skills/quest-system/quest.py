@@ -69,9 +69,10 @@ def save_progress(p):
 
 
 def parse_checkboxes(content):
-    """從 今日代辦 解析 checkbox 完成狀況，回傳 (checked_tasks, weight_kg)"""
-    checked = []
-    weight  = None
+    """從 今日代辦 解析 checkbox 完成狀況，回傳 (checked_tasks, weight_kg, gratitude_text)"""
+    checked   = []
+    weight    = None
+    gratitude = None
 
     for line in content.split("\n"):
         # 已勾選：- [x] 任務名稱 `+N`
@@ -84,9 +85,14 @@ def parse_checkboxes(content):
             if w_match:
                 weight = float(w_match.group(1))
 
+            # 提取無功受祿記錄
+            g_match = re.search(r"無功受祿記錄.*→ 今日：(.+)", line)
+            if g_match:
+                gratitude = g_match.group(1).strip()
+
             checked.append({"line": line.strip(), "pts": pts})
 
-    return checked, weight
+    return checked, weight, gratitude
 
 
 def calc_streak_bonus(streak):
@@ -211,7 +217,7 @@ def main():
         return
 
     # 解析 checkbox
-    checked, weight = parse_checkboxes(content)
+    checked, weight, gratitude = parse_checkboxes(content)
     progress = load_progress()
 
     if not checked:
@@ -221,13 +227,14 @@ def main():
             progress["streak"] = 0
             progress["last_updated"] = YESTERDAY
             progress.setdefault("daily_log", []).append({
-                "date":         YESTERDAY,
-                "pts":          0,
-                "base_pts":     0,
-                "streak_bonus": 0,
-                "streak":       0,
-                "weight_kg":    None,
-                "tasks_done":   []
+                "date":           YESTERDAY,
+                "pts":            0,
+                "base_pts":       0,
+                "streak_bonus":   0,
+                "streak":         0,
+                "weight_kg":      None,
+                "gratitude_text": None,
+                "tasks_done":     []
             })
             save_progress(progress)
             update_tracker(progress)
@@ -236,7 +243,7 @@ def main():
     # 週任務去重：同一 ISO 週內已計分的任務不重複累計
     iso_week = datetime.strptime(YESTERDAY, "%Y-%m-%d").strftime("%Y-W%W")
     weekly_done = progress.get("weekly_completed", {}).get(iso_week, [])
-    WEEKLY_TASKS = ["找團", "揪人"]
+    WEEKLY_TASKS = ["找團", "揪人", "說出"]
 
     # 計算今日積分（直接加總 checkbox 的 +N，週任務去重）
     base_pts = 0
@@ -310,13 +317,14 @@ def main():
 
     # daily_log 寫入
     progress.setdefault("daily_log", []).append({
-        "date":       YESTERDAY,
-        "pts":        total_today,
-        "base_pts":   base_pts,
-        "streak_bonus": streak_bonus,
-        "streak":     progress["streak"],
-        "weight_kg":  weight,
-        "tasks_done": tasks_done
+        "date":           YESTERDAY,
+        "pts":            total_today,
+        "base_pts":       base_pts,
+        "streak_bonus":   streak_bonus,
+        "streak":         progress["streak"],
+        "weight_kg":      weight,
+        "gratitude_text": gratitude,
+        "tasks_done":     tasks_done
     })
 
     save_progress(progress)

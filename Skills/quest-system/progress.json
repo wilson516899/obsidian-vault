@@ -1,7 +1,7 @@
 {
-  "total_pts": 696,
+  "total_pts": 728,
   "streak": 1,
-  "last_updated": "2026-06-23",
+  "last_updated": "2026-06-24",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -534,6 +534,20 @@
         "記錄體重",
         "無消夜 + 無零食",
         ""
+      ]
+    },
+    {
+      "date": "2026-06-24",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.0,
+      "gratitude_text": "今天見到韶棋的朋友了，他朋友說我長得蠻帥的哈哈哈",
+      "tasks_done": [
+        "記錄體重",
+        "無功受祿記錄",
+        "無消夜 + 無零食"
       ]
     }
   ]

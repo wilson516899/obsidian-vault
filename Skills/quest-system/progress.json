@@ -1,7 +1,7 @@
 {
-  "total_pts": 750,
-  "streak": 0,
-  "last_updated": "2026-06-27",
+  "total_pts": 772,
+  "streak": 1,
+  "last_updated": "2026-06-28",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -37,7 +37,9 @@
     ],
     "2026-W23": [],
     "2026-W24": [],
-    "2026-W25": []
+    "2026-W25": [
+      "找團 / 揪人訊息"
+    ]
   },
   "daily_log": [
     {
@@ -592,6 +594,19 @@
       "weight_kg": null,
       "gratitude_text": null,
       "tasks_done": []
+    },
+    {
+      "date": "2026-06-28",
+      "pts": 22,
+      "base_pts": 20,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 79.8,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "找團 / 揪人訊息"
+      ]
     }
   ]
 }

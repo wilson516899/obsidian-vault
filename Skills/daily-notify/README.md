@@ -29,19 +29,29 @@ cron (08:00) → notify.py → 讀 Daily Note/ 最近 7 天（只擷取 checkbox
 cron (08:10, 每月1號) → month_archive.py → 統計上個月 checkbox 完成率
                                          → 整理體重紀錄 + 隨手記
                                          → 產生 Daily Note/YYYY-MM/YYYY-MM 月份彙整.md
-                                         → 將上月每日檔移入 Daily Note/YYYY-MM/ 子資料夾
 ```
+> 注意：日報本身在產出時就已寫入 `Daily Note/YYYY-MM/` 子資料夾，month_archive.py 不做移檔。
 
 ---
 
-## Daily Note 輸出格式
+## 輸出格式
 
+**Daily Note（每日）**
 ```
 # YYYY-MM-DD（星期X）
 修煉進度條
 ## ⚡ 今日修煉任務（checkbox）
 ## 每日簡報（代辦推薦 + 新聞）
 ## 隨手記
+```
+
+**月份彙整（每月 1 號產出，放在同月資料夾）**
+```
+# YYYY-MM 月份彙整
+## 📊 本月快照      ← 有任務天數、空白天數、累積積分、月初/月底體重
+## ✅ 任務完成次數  ← 各任務完成次數 + 應有次數（依任務類型自動計算）
+## ⚖️ 體重紀錄     ← 每次記錄體重的日期與數值
+## 📝 隨手記       ← 各日的隨手記區塊彙整
 ```
 
 ---

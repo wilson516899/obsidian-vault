@@ -5,12 +5,11 @@ Daily Note 月份打包腳本
 1. 統計上個月的 checkbox 完成狀況
 2. 整理體重紀錄
 3. 整理隨手記
-4. 產生月份彙整.md
-5. 將上個月的每日檔移入 Daily Note/YYYY-MM/ 子資料夾
+4. 產生月份彙整.md（含任務應有次數）
 """
 
-import os, re, json, shutil
-from datetime import datetime, timedelta
+import os, re, json
+from datetime import datetime, timedelta, date
 from calendar import monthrange
 
 VAULT = os.environ.get(
@@ -30,6 +29,44 @@ DAILY_NOTE_DIR  = f"{VAULT}/Daily Note"
 ARCHIVE_DIR     = f"{DAILY_NOTE_DIR}/{MONTH_STR}"
 PROGRESS_PATH   = f"{VAULT}/Skills/quest-system/progress.json"
 OUTPUT_PATH     = f"{ARCHIVE_DIR}/{MONTH_STR} 月份彙整.md"
+
+
+def get_expected_counts(year, month):
+    """計算各任務類型在該月的應有次數"""
+    total_days = monthrange(year, month)[1]
+    exercise_days = normal_days = 0
+
+    for d in range(1, total_days + 1):
+        dow = date(year, month, d).weekday()
+        if dow in [1, 3]:       # 週二、週四 → 運動日
+            exercise_days += 1
+        elif dow not in [5, 6]: # 週一、三、五 → 一般日
+            normal_days += 1
+
+    # 該月跨幾個 ISO 週（週任務每週一次）
+    weeks = set(date(year, month, d).isocalendar()[1] for d in range(1, total_days + 1))
+    weekly_count = len(weeks)
+
+    return {
+        "fixed":    total_days,
+        "exercise": exercise_days,
+        "normal":   normal_days,
+        "weekly":   weekly_count,
+        "na":       None,          # 不定次數（如寫作）
+    }
+
+
+def classify_task(name):
+    """根據任務名稱判斷類別，對應 get_expected_counts 的 key"""
+    if any(kw in name for kw in ["找團", "揪人", "說出"]):
+        return "weekly"
+    if any(kw in name for kw in ["運動課", "PMP 讀書 30"]):
+        return "exercise"
+    if any(kw in name for kw in ["PMP 讀書 45", "飯後走路"]):
+        return "normal"
+    if "寫作" in name:
+        return "na"
+    return "fixed"   # 記錄體重、無功受祿記錄、無消夜、寫日記 等固定日任務
 
 
 def read(path):
@@ -89,9 +126,13 @@ def build_report(daily_data, progress):
         for t in d["checked"]:
             task_count[t] = task_count.get(t, 0) + 1
 
+    expected = get_expected_counts(YEAR, MONTH)
     task_rows = ""
     for task, count in sorted(task_count.items(), key=lambda x: -x[1]):
-        task_rows += f"| {task} | {count} 次 |\n"
+        cat = classify_task(task)
+        exp = expected[cat]
+        exp_str = f"{exp} 次" if exp is not None else "—"
+        task_rows += f"| {task} | {count} 次 | {exp_str} |\n"
 
     # 體重紀錄（從 daily_data）
     weight_rows = ""
@@ -158,8 +199,8 @@ def build_report(daily_data, progress):
 
 ## ✅ 任務完成次數
 
-| 任務 | 次數 |
-|------|------|
+| 任務 | 完成次數 | 應有次數 |
+|------|---------|---------|
 {task_rows.strip()}
 
 ---
@@ -184,11 +225,11 @@ def main():
 
     # 收集上個月的每日檔
     daily_data = {}
-    files_to_move = []
 
     for day in range(1, MONTH_DAYS + 1):
         date_str = f"{MONTH_STR}-{day:02d}"
-        path = f"{DAILY_NOTE_DIR}/{date_str}.md"
+        # 日報已在月份子資料夾內
+        path = f"{ARCHIVE_DIR}/{date_str}.md"
         if os.path.exists(path):
             content = read(path)
             checked, unchecked, weight = extract_checkboxes(content)
@@ -199,13 +240,12 @@ def main():
                 "weight":    weight,
                 "memo":      memo
             }
-            files_to_move.append(path)
 
     if not daily_data:
         print(f"找不到 {MONTH_STR} 的任何 Daily Note，跳過")
         return
 
-    # 建立子資料夾
+    # 建立子資料夾（如不存在）
     os.makedirs(ARCHIVE_DIR, exist_ok=True)
 
     # 產月份彙整
@@ -214,13 +254,6 @@ def main():
     with open(OUTPUT_PATH, "w", encoding="utf-8") as f:
         f.write(report)
     print(f"月份彙整已產出：{OUTPUT_PATH}")
-
-    # 移動每日檔
-    for src in files_to_move:
-        fname = os.path.basename(src)
-        dst   = f"{ARCHIVE_DIR}/{fname}"
-        shutil.move(src, dst)
-    print(f"已移動 {len(files_to_move)} 個每日檔至 {ARCHIVE_DIR}/")
 
 
 if __name__ == "__main__":

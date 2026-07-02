@@ -10,7 +10,7 @@
 |-------|------|------|
 | [[Skills/claude-note/README\|claude-note]] | Claude 月份系統日誌（手動在對話中更新） | 手動，有系統改動時 |
 | [[Skills/quest-system/README\|quest-system]] | 修煉積分結算與進度追蹤 | cron 07:55，每日 |
-| [[Skills/daily-notify/README\|daily-notify]] | 每日代辦 + 新聞簡報產生 | cron 08:00，每日 |
+| [[Skills/daily-notify/README\|daily-notify]] | 每日代辦 + 新聞簡報產生；每月 1 號 08:10 產月份彙整（含任務完成次數 vs 應有次數） | cron 08:00 每日 / 08:10 每月 1 號 |
 | [[Skills/book-fill/README\|book-fill]] | 書摘 + 小說任務推薦 | cron 08:05，每週一 |
 | [[Skills/budget-import/README\|budget-import]] | 匯入 Budget App 記帳資料到 記帳/ 資料夾（腳本在 `C:\Users\崇瑋\Desktop\Claude\budget-import\`，不在 Vault） | 手動，建議每月 1 號 |
 | [[Skills/git-sync/README\|git-sync]] | Vault 變更自動 commit + push 到 GitHub | cron 23:05，每日 |

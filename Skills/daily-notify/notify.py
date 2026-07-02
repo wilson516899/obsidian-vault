@@ -116,7 +116,8 @@ def collect_context():
 
     for i in range(1, 8):
         date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
-        dn = read(f"{VAULT}/Daily Note/{date}.md")
+        month = date[:7]
+        dn = read(f"{VAULT}/Daily Note/{month}/{date}.md")
         if dn:
             summary = extract_daily_note_summary(dn)
             if summary:
@@ -307,9 +308,10 @@ def update_homepage():
         with open(homepage, "r", encoding="utf-8") as f:
             content = f.read()
         import re
+        month = TODAY[:7]
         updated = re.sub(
-            r'\[\[Daily Note/\d{4}-\d{2}-\d{2}\|今天的 Daily Note\]\]',
-            f'[[Daily Note/{TODAY}|今天的 Daily Note]]',
+            r'\[\[Daily Note/(?:\d{4}-\d{2}/)?(\d{4}-\d{2}-\d{2})\|今天的 Daily Note\]\]',
+            f'[[Daily Note/{month}/{TODAY}|今天的 Daily Note]]',
             content
         )
         if updated != content:
@@ -321,7 +323,8 @@ def update_homepage():
 
 
 def write_daily_note(briefing, progress_bar, quest_section, weekly_writing):
-    path = f"{VAULT}/Daily Note/{TODAY}.md"
+    month = TODAY[:7]
+    path = f"{VAULT}/Daily Note/{month}/{TODAY}.md"
     os.makedirs(os.path.dirname(path), exist_ok=True)
 
     writing_block = f"\n---\n\n{weekly_writing}\n" if weekly_writing else ""

@@ -18,7 +18,7 @@ TODAY     = _now.strftime("%Y-%m-%d")
 YESTERDAY = (_now - timedelta(days=1)).strftime("%Y-%m-%d")
 
 PROGRESS_PATH = f"{VAULT}/Skills/quest-system/progress.json"
-AGENDA_PATH   = f"{VAULT}/Daily Note/{YESTERDAY}.md"
+AGENDA_PATH   = f"{VAULT}/Daily Note/{YESTERDAY[:7]}/{YESTERDAY}.md"
 TRACKER_PATH  = f"{VAULT}/Skills/quest-system/修煉進度.md"
 
 # 里程碑定義

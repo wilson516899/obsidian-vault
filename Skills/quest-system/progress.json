@@ -1,7 +1,7 @@
 {
-  "total_pts": 1033,
+  "total_pts": 1060,
   "streak": 1,
-  "last_updated": "2026-07-07",
+  "last_updated": "2026-07-08",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -730,6 +730,20 @@
       "tasks_done": [
         "記錄體重",
         ""
+      ]
+    },
+    {
+      "date": "2026-07-08",
+      "pts": 27,
+      "base_pts": 25,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.9,
+      "gratitude_text": "感謝今天的我交到了新朋友william，沒想到我還是喜歡跟人聊天的嘿嘿。",
+      "tasks_done": [
+        "記錄體重",
+        "無功受祿記錄",
+        "飯後走路 20 分鐘"
       ]
     }
   ]

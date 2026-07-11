@@ -1,6 +1,6 @@
 {
-  "total_pts": 1099,
-  "streak": 2,
+  "total_pts": 1110,
+  "streak": 3,
   "last_updated": "2026-07-10",
   "current_goal": {
     "name": "兩天一夜旅行",
@@ -758,6 +758,18 @@
         "記錄體重",
         "無消夜 + 無零食",
         "運動課出席（19:00）"
+      ]
+    },
+    {
+      "date": "2026-07-10",
+      "pts": 11,
+      "base_pts": 5,
+      "streak_bonus": 6,
+      "streak": 3,
+      "weight_kg": 75.2,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重"
       ]
     }
   ]

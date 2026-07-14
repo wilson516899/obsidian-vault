@@ -1,7 +1,7 @@
 {
-  "total_pts": 1134,
+  "total_pts": 1176,
   "streak": 1,
-  "last_updated": "2026-07-12",
+  "last_updated": "2026-07-13",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -44,7 +44,8 @@
       "找團 / 揪人訊息",
       "~~找團 / 揪人訊息~~"
     ],
-    "2026-W27": []
+    "2026-W27": [],
+    "2026-W28": []
   },
   "daily_log": [
     {
@@ -794,6 +795,21 @@
       "gratitude_text": null,
       "tasks_done": [
         "記錄體重",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-07-13",
+      "pts": 42,
+      "base_pts": 40,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": null,
+      "gratitude_text": "今天很高興得跟韶棋說了需要她幫我一 起配眼鏡，就是一個簡單的提需求，韶棋也開心地接受了，很讚！",
+      "tasks_done": [
+        "記錄體重",
+        "無功受祿記錄",
+        "無消夜 + 無零食",
         "飯後走路 20 分鐘"
       ]
     }

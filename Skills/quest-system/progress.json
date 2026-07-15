@@ -1,7 +1,7 @@
 {
-  "total_pts": 1176,
+  "total_pts": 1223,
   "streak": 1,
-  "last_updated": "2026-07-13",
+  "last_updated": "2026-07-14",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -811,6 +811,21 @@
         "無功受祿記錄",
         "無消夜 + 無零食",
         "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-07-14",
+      "pts": 47,
+      "base_pts": 45,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 75.9,
+      "gratitude_text": "今天媽媽跟我說謝謝擦神桌，我也很感謝他這樣對我說嘿嘿",
+      "tasks_done": [
+        "記錄體重",
+        "無功受祿記錄",
+        "無消夜 + 無零食",
+        ""
       ]
     }
   ]

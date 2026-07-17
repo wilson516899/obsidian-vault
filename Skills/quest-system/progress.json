@@ -1,7 +1,7 @@
 {
-  "total_pts": 1255,
+  "total_pts": 1302,
   "streak": 1,
-  "last_updated": "2026-07-15",
+  "last_updated": "2026-07-16",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -840,6 +840,21 @@
         "記錄體重",
         "無消夜 + 無零食",
         "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-07-16",
+      "pts": 47,
+      "base_pts": 45,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 75.5,
+      "gratitude_text": "今天被韶棋感謝了，要帶她去上班！",
+      "tasks_done": [
+        "記錄體重",
+        "無功受祿記錄",
+        "無消夜 + 無零食",
+        ""
       ]
     }
   ]

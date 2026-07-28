@@ -1,7 +1,7 @@
 {
-  "total_pts": 1343,
+  "total_pts": 1375,
   "streak": 0,
-  "last_updated": "2026-07-23",
+  "last_updated": "2026-07-28",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -46,7 +46,8 @@
     ],
     "2026-W27": [],
     "2026-W28": [],
-    "2026-W29": []
+    "2026-W29": [],
+    "2026-W30": []
   },
   "daily_log": [
     {
@@ -918,6 +919,60 @@
     },
     {
       "date": "2026-07-23",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "gratitude_text": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-07-24",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "gratitude_text": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-07-25",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "gratitude_text": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-07-26",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "gratitude_text": null,
+      "tasks_done": []
+    },
+    {
+      "date": "2026-07-27",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.6,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-07-28",
       "pts": 0,
       "base_pts": 0,
       "streak_bonus": 0,

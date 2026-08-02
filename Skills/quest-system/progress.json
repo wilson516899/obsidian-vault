@@ -1,7 +1,7 @@
 {
-  "total_pts": 1468,
+  "total_pts": 1475,
   "streak": 1,
-  "last_updated": "2026-07-31",
+  "last_updated": "2026-08-01",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -1032,6 +1032,19 @@
       "tasks_done": [
         "記錄體重",
         "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-08-01",
+      "pts": 7,
+      "base_pts": 5,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.2,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        ""
       ]
     }
   ]

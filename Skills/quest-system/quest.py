@@ -83,7 +83,10 @@ def parse_checkboxes(content):
             # 提取體重
             w_match = re.search(r"今日體重：([\d.]+)", line)
             if w_match:
-                weight = float(w_match.group(1))
+                try:
+                    weight = float(w_match.group(1))
+                except ValueError:
+                    print(f"  ⚠️  體重格式錯誤（跳過）：{w_match.group(1)!r}")
 
             # 提取無功受祿記錄
             g_match = re.search(r"無功受祿記錄.*→ 今日：(.+)", line)

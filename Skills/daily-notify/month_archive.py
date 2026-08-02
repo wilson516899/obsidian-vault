@@ -94,7 +94,10 @@ def extract_checkboxes(content):
             name = re.sub(r"→.*", "", name).strip()
             w = re.search(r"今日體重：([\d.]+)", line)
             if w:
-                weight = float(w.group(1))
+                try:
+                    weight = float(w.group(1))
+                except ValueError:
+                    print(f"  ⚠️  體重格式錯誤（跳過）：{w.group(1)!r}  ← {line.strip()}")
             checked.append(name)
         elif re.match(r"- \[ \]", line):
             name = re.sub(r"`\+\d+`", "", re.sub(r"- \[ \] ", "", line)).strip()

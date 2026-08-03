@@ -1,10 +1,10 @@
 {
-  "total_pts": 1475,
+  "total_pts": 2,
   "streak": 1,
-  "last_updated": "2026-08-01",
+  "last_updated": "2026-08-02",
   "current_goal": {
-    "name": "兩天一夜旅行",
-    "target_pts": 1500
+    "name": "衣著採購",
+    "target_pts": 700
   },
   "milestones_completed": [
     {
@@ -26,7 +26,7 @@
       "date": "2026-06-15"
     }
   ],
-  "total_pmp_minutes": 120,
+  "total_pmp_minutes": 165,
   "weekly_completed": {
     "2026-W19": [],
     "2026-W20": [],
@@ -1045,6 +1045,19 @@
       "tasks_done": [
         "記錄體重",
         ""
+      ]
+    },
+    {
+      "date": "2026-08-02",
+      "pts": 27,
+      "base_pts": 25,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 77.0,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "PMP 讀書 30 分鐘"
       ]
     }
   ]

@@ -1,7 +1,7 @@
 {
-  "total_pts": 2,
+  "total_pts": 19,
   "streak": 1,
-  "last_updated": "2026-08-02",
+  "last_updated": "2026-08-03",
   "current_goal": {
     "name": "衣著採購",
     "target_pts": 700
@@ -47,7 +47,8 @@
     "2026-W27": [],
     "2026-W28": [],
     "2026-W29": [],
-    "2026-W30": []
+    "2026-W30": [],
+    "2026-W31": []
   },
   "daily_log": [
     {
@@ -1058,6 +1059,19 @@
       "tasks_done": [
         "記錄體重",
         "PMP 讀書 30 分鐘"
+      ]
+    },
+    {
+      "date": "2026-08-03",
+      "pts": 17,
+      "base_pts": 15,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.3,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "飯後走路 20 分鐘"
       ]
     }
   ]

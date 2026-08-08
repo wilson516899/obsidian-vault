@@ -61,7 +61,7 @@ def get_novel_task():
 def write_weekly_task(primary_book_name, primary_book_path, extra_books):
     """將本週寫作任務寫入獨立檔案，供 notify.py 每天讀取"""
     out_path   = f"{VAULT}/Skills/book-fill/本週任務.md"
-    link       = f"[[圖書館/{os.path.basename(primary_book_path).replace('.md', '')}|{primary_book_name}]]"
+    link       = f"[[Obsidian/圖書館/{os.path.basename(primary_book_path).replace('.md', '')}|{primary_book_name}]]"
     novel_task = get_novel_task()
     week_str   = TODAY.strftime("%Y-W%W")
 
@@ -70,7 +70,7 @@ def write_weekly_task(primary_book_name, primary_book_path, extra_books):
     if extra_books:
         extra_lines = "\n**📋 本週備選（想多寫可從這裡挑）**\n"
         for name, path in extra_books:
-            el = f"[[圖書館/{os.path.basename(path).replace('.md', '')}|{name}]]"
+            el = f"[[Obsidian/圖書館/{os.path.basename(path).replace('.md', '')}|{name}]]"
             extra_lines += f"- 《{el}》\n"
 
     content = (

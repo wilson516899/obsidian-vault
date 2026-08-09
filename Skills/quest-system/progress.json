@@ -1,7 +1,7 @@
 {
-  "total_pts": 102,
+  "total_pts": 134,
   "streak": 1,
-  "last_updated": "2026-08-07",
+  "last_updated": "2026-08-08",
   "current_goal": {
     "name": "衣著採購",
     "target_pts": 700
@@ -1124,6 +1124,19 @@
       "gratitude_text": null,
       "tasks_done": [
         "記錄體重"
+      ]
+    },
+    {
+      "date": "2026-08-08",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 76.5,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        ""
       ]
     }
   ]

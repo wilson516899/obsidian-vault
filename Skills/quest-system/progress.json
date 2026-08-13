@@ -1,7 +1,7 @@
 {
-  "total_pts": 250,
+  "total_pts": 282,
   "streak": 1,
-  "last_updated": "2026-08-11",
+  "last_updated": "2026-08-12",
   "current_goal": {
     "name": "衣著採購",
     "target_pts": 700
@@ -1179,6 +1179,20 @@
         "記錄體重",
         "無消夜 + 無零食",
         "PMP 讀書 30 分鐘"
+      ]
+    },
+    {
+      "date": "2026-08-12",
+      "pts": 32,
+      "base_pts": 30,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 74.5,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        "飯後走路 20 分鐘"
       ]
     }
   ]

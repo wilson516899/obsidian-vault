@@ -1,7 +1,7 @@
 {
-  "total_pts": 447,
-  "streak": 0,
-  "last_updated": "2026-08-26",
+  "total_pts": 484,
+  "streak": 1,
+  "last_updated": "2026-08-27",
   "current_goal": {
     "name": "衣著採購",
     "target_pts": 700
@@ -1353,6 +1353,20 @@
       "weight_kg": null,
       "gratitude_text": null,
       "tasks_done": []
+    },
+    {
+      "date": "2026-08-27",
+      "pts": 37,
+      "base_pts": 35,
+      "streak_bonus": 2,
+      "streak": 1,
+      "weight_kg": 74.6,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "無消夜 + 無零食",
+        ""
+      ]
     }
   ]
 }

@@ -115,7 +115,7 @@ def collect_context():
     parts = []
 
     for i in range(1, 8):
-        date = (datetime.now() - timedelta(days=i)).strftime("%Y-%m-%d")
+        date = (_now - timedelta(days=i)).strftime("%Y-%m-%d")
         month = date[:7]
         dn = read(f"{VAULT}/Daily Note/{month}/{date}.md")
         if dn:
@@ -158,7 +158,7 @@ def build_progress_bar(progress):
     bar = "█" * filled + "░" * (20 - filled)
     streak_icon = f" 🔥" if streak >= 3 else ""
 
-    yesterday = (datetime.now() - timedelta(days=1)).strftime("%Y-%m-%d")
+    yesterday = (_now - timedelta(days=1)).strftime("%Y-%m-%d")
     log = progress.get("daily_log", [])
     yesterday_log = next((d for d in reversed(log) if d.get("date") == yesterday), None)
     yesterday_line = ""
@@ -177,7 +177,7 @@ def build_progress_bar(progress):
 def get_weekly_done():
     """從 progress.json 讀本週已完成的週任務名稱"""
     progress = load_progress()
-    iso_week = datetime.now().strftime("%Y-W%W")
+    iso_week = _now.strftime("%Y-W%W")
     return progress.get("weekly_completed", {}).get(iso_week, [])
 
 

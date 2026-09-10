@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 680 430" width="680" height="430" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="680" height="430" fill="#fcfcfb"/>
+
+  <text x="24" y="34" font-size="17" font-weight="600" fill="#0b0b0b">柏拉圖分析 Pareto Chart</text>
+  <text x="24" y="55" font-size="12.5" fill="#52514e">缺陷類型依次數降冪排列 ＋ 累積百分比曲線 · 少數類型造成多數問題</text>
+
+  <!-- grid -->
+  <g stroke="#e6e5e1" stroke-width="1">
+    <line x1="70" y1="320" x2="600" y2="320"/>
+    <line x1="70" y1="255" x2="600" y2="255"/>
+    <line x1="70" y1="190" x2="600" y2="190"/>
+    <line x1="70" y1="125" x2="600" y2="125"/>
+    <line x1="70" y1="80"  x2="600" y2="80"/>
+  </g>
+
+  <!-- 80% reference -->
+  <line x1="70" y1="112" x2="600" y2="112" stroke="#52514e" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <text x="604" y="109" font-size="11.5" font-weight="600" fill="#52514e">80%</text>
+
+  <!-- vital few region -->
+  <rect x="70" y="80" width="260" height="240" fill="#2a78d6" opacity="0.055"/>
+  <text x="200" y="100" font-size="12" font-weight="600" fill="#2a78d6" text-anchor="middle">關鍵少數 Vital Few</text>
+
+  <!-- bars: rounded top ends, 2px gaps -->
+  <g fill="#2a78d6">
+    <path d="M76,320 L76,74 Q76,70 80,70 L127,70 Q131,70 131,74 L131,320 Z"/>
+    <path d="M141,320 L141,116 Q141,112 145,112 L192,112 Q196,112 196,116 L196,320 Z"/>
+    <path d="M206,320 L206,171 Q206,167 210,167 L257,167 Q261,167 261,171 L261,320 Z"/>
+    <path d="M271,320 L271,232 Q271,228 275,228 L322,228 Q326,228 326,232 L326,320 Z"/>
+    <path d="M336,320 L336,257 Q336,253 340,253 L387,253 Q391,253 391,257 L391,320 Z"/>
+    <path d="M401,320 L401,275 Q401,271 405,271 L452,271 Q456,271 456,275 L456,320 Z"/>
+    <path d="M466,320 L466,289 Q466,285 470,285 L517,285 Q521,285 521,289 L521,320 Z"/>
+    <path d="M531,320 L531,298 Q531,294 535,294 L582,294 Q586,294 586,298 L586,320 Z"/>
+  </g>
+
+  <!-- cumulative line -->
+  <polyline points="103,246 168,185 233,140 298,112 363,93 428,78 493,68 558,60"
+            fill="none" stroke="#eb6834" stroke-width="2" stroke-linejoin="round"/>
+  <g fill="#eb6834" stroke="#fcfcfb" stroke-width="2">
+    <circle cx="103" cy="246" r="4.5"/><circle cx="168" cy="185" r="4.5"/>
+    <circle cx="233" cy="140" r="4.5"/><circle cx="298" cy="112" r="5.5"/>
+    <circle cx="363" cy="93" r="4.5"/><circle cx="428" cy="78" r="4.5"/>
+    <circle cx="493" cy="68" r="4.5"/><circle cx="558" cy="60" r="4.5"/>
+  </g>
+
+  <!-- selective direct labels -->
+  <text x="103" y="238" font-size="11" font-weight="600" fill="#52514e" text-anchor="middle">28%</text>
+  <text x="298" y="104" font-size="11.5" font-weight="700" fill="#52514e" text-anchor="middle">80%</text>
+
+  <!-- axes -->
+  <line x1="70" y1="320" x2="600" y2="320" stroke="#8a8880" stroke-width="1.5"/>
+  <line x1="70" y1="60" x2="70" y2="320" stroke="#8a8880" stroke-width="1.5"/>
+
+  <!-- y labels -->
+  <g font-size="11" fill="#52514e" text-anchor="end">
+    <text x="62" y="324">0</text><text x="62" y="259">40</text>
+    <text x="62" y="194">80</text><text x="62" y="129">120</text>
+  </g>
+  <text x="24" y="200" font-size="11.5" fill="#52514e" transform="rotate(-90 24 200)" text-anchor="middle">缺陷次數</text>
+  <text x="656" y="200" font-size="11.5" fill="#52514e" transform="rotate(90 656 200)" text-anchor="middle">累積百分比</text>
+
+  <!-- x labels -->
+  <g font-size="11.5" fill="#52514e" text-anchor="middle">
+    <text x="103" y="340">A</text><text x="168" y="340">B</text>
+    <text x="233" y="340">C</text><text x="298" y="340">D</text>
+    <text x="363" y="340">E</text><text x="428" y="340">F</text>
+    <text x="493" y="340">G</text><text x="558" y="340">H</text>
+  </g>
+  <text x="335" y="360" font-size="11.5" fill="#52514e" text-anchor="middle">缺陷類型（依次數降冪）</text>
+
+  <!-- legend -->
+  <g font-size="12" fill="#52514e">
+    <rect x="70" y="382" width="12" height="12" rx="2" fill="#2a78d6"/>
+    <text x="88" y="392">各類型缺陷次數</text>
+    <line x1="215" y1="388" x2="239" y2="388" stroke="#eb6834" stroke-width="2"/>
+    <circle cx="227" cy="388" r="4.5" fill="#eb6834" stroke="#fcfcfb" stroke-width="2"/>
+    <text x="245" y="392">累積百分比</text>
+  </g>
+
+  <text x="70" y="416" font-size="12" fill="#0b0b0b">💡 A–D 四類就佔了 80% 的缺陷 → 優先修這四類，效益最大</text>
+</svg>

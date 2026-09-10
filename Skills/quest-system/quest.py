@@ -223,6 +223,11 @@ def main():
     checked, weight, gratitude = parse_checkboxes(content)
     progress = load_progress()
 
+    # 冪等防呆：該日期已在 daily_log 就跳過，避免補跑/重跑造成重複計分
+    if any(e.get("date") == YESTERDAY for e in progress.get("daily_log", [])):
+        print(f"{YESTERDAY} 已結算過，跳過（避免重複計分）")
+        return
+
     if not checked:
         print("無勾選任務，連擊歸零並更新進度")
         last = progress.get("last_updated", "")
@@ -271,12 +276,11 @@ def main():
     progress.setdefault("weekly_completed", {})[iso_week] = weekly_done
 
     # 連擊邏輯
+    # last_updated 存的是「已結算日」，故連續與否需與 YESTERDAY 的前一天比對
     last = progress.get("last_updated", "")
-    if last == YESTERDAY:
-        progress["streak"] += 1
-    elif last == TODAY:
-        print("今天已結算過，跳過")
-        return
+    prev_day = (datetime.strptime(YESTERDAY, "%Y-%m-%d") - timedelta(days=1)).strftime("%Y-%m-%d")
+    if last == prev_day:
+        progress["streak"] = progress.get("streak", 0) + 1
     else:
         progress["streak"] = 1
 

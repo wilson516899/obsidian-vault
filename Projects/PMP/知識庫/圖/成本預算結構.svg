@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 450" width="720" height="450" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="720" height="450" fill="#fcfcfb"/>
+
+  <text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">成本預算結構 Cost Budget</text>
+  <text x="24" y="52" font-size="12.5" fill="#52514e">成本基準＝彙總估算＋應急準備　·　專案預算＝成本基準＋管理準備</text>
+
+  <!-- aggregation chain -->
+  <g font-size="11.5" fill="#52514e">
+    <text x="24" y="84">彙總鏈：</text>
+    <text x="80" y="84" fill="#0b0b0b">活動成本估算 → 工作包 → 控制帳戶</text>
+  </g>
+
+  <!-- column -->
+  <rect x="240" y="100" width="190" height="52" rx="4" fill="#eb6834"/>
+  <rect x="240" y="154" width="190" height="62" rx="4" fill="#1baf7a"/>
+  <rect x="240" y="218" width="190" height="150" rx="4" fill="#2a78d6"/>
+
+  <!-- direct labels (relief rule) -->
+  <g fill="#ffffff" text-anchor="middle">
+    <text x="335" y="122" font-size="13" font-weight="600">管理準備</text>
+    <text x="335" y="140" font-size="11">Management Reserve</text>
+    <text x="335" y="180" font-size="13" font-weight="600">應急準備</text>
+    <text x="335" y="198" font-size="11">Contingency Reserve</text>
+    <text x="335" y="286" font-size="13" font-weight="600">彙總的成本估算</text>
+    <text x="335" y="306" font-size="11">工作包／控制帳戶成本</text>
+  </g>
+
+  <!-- left annotations -->
+  <g font-size="11" fill="#52514e" text-anchor="end">
+    <text x="228" y="126">未知的未知</text>
+    <text x="228" y="142">需高層核准才能動用</text>
+    <text x="228" y="186">已知的未知</text>
+    <text x="228" y="202">PM 可自行動用</text>
+  </g>
+
+  <!-- bracket 1: cost baseline -->
+  <path d="M444,154 L456,154 L456,368 L444,368" fill="none" stroke="#1baf7a" stroke-width="2"/>
+  <text x="464" y="255" font-size="13" font-weight="600" fill="#0b0b0b">成本基準</text>
+  <text x="464" y="273" font-size="11.5" fill="#52514e">Cost Baseline</text>
+  <text x="464" y="291" font-size="11.5" fill="#52514e">→ 衡量績效用（EVM 的 PV）</text>
+
+  <!-- bracket 2: project budget -->
+  <path d="M646,100 L658,100 L658,368 L646,368" fill="none" stroke="#eb6834" stroke-width="2"/>
+  <text x="666" y="222" font-size="12.5" font-weight="600" fill="#0b0b0b" transform="rotate(90 666 222)" text-anchor="middle">專案預算 Project Budget</text>
+
+  <!-- baseline -->
+  <line x1="200" y1="368" x2="660" y2="368" stroke="#8a8880" stroke-width="1.5"/>
+
+  <!-- key callout -->
+  <rect x="24" y="392" width="672" height="42" rx="6" fill="#2a78d6" opacity="0.06"/>
+  <text x="40" y="410" font-size="12.5" font-weight="600" fill="#0b0b0b">⚠️ 管理準備「不在」成本基準內</text>
+  <text x="40" y="428" font-size="12" fill="#52514e">動用管理準備＝變更成本基準，必須走變更控制；應急準備已含在基準內，PM 可直接動用</text>
+</svg>

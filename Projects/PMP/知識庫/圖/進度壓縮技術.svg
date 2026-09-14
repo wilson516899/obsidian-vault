@@ -1,0 +1,77 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 400" width="700" height="400" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="700" height="400" fill="#fcfcfb"/>
+
+  <text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">進度壓縮：Crashing vs Fast Tracking</text>
+  <text x="24" y="52" font-size="12.5" fill="#52514e">兩者都縮短 3 週，但付出的代價完全不同</text>
+
+  <!-- time axis -->
+  <line x1="140" y1="74" x2="620" y2="74" stroke="#8a8880" stroke-width="1.5"/>
+  <g font-size="10.5" fill="#52514e" text-anchor="middle">
+    <text x="140" y="68">0</text><text x="300" y="68">4</text>
+    <text x="460" y="68">8</text><text x="620" y="68">12 週</text>
+  </g>
+
+  <!-- reference lines -->
+  <line x1="620" y1="74" x2="620" y2="330" stroke="#c9c8c2" stroke-width="1" stroke-dasharray="4 4"/>
+  <line x1="500" y1="150" x2="500" y2="330" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="5 4"/>
+
+  <!-- ROW 1: baseline -->
+  <text x="24" y="105" font-size="13" font-weight="600" fill="#0b0b0b">原計畫</text>
+  <text x="24" y="122" font-size="11" fill="#52514e">依序執行</text>
+  <g fill="#2a78d6">
+    <rect x="140" y="90" width="158" height="26" rx="4"/>
+    <rect x="302" y="90" width="156" height="26" rx="4"/>
+    <rect x="462" y="90" width="158" height="26" rx="4"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="219" y="108">A</text><text x="380" y="108">B</text><text x="541" y="108">C</text>
+  </g>
+  <text x="632" y="108" font-size="11.5" font-weight="600" fill="#52514e">12 週</text>
+
+  <!-- ROW 2: fast tracking -->
+  <text x="24" y="190" font-size="13" font-weight="600" fill="#0b0b0b">Fast Track</text>
+  <text x="24" y="207" font-size="11" fill="#52514e">快速跟進</text>
+  <text x="24" y="222" font-size="11" fill="#52514e">→ 平行重疊</text>
+  <g fill="#2a78d6">
+    <rect x="140" y="170" width="158" height="24" rx="4"/>
+    <rect x="240" y="198" width="158" height="24" rx="4"/>
+    <rect x="340" y="226" width="158" height="24" rx="4"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="219" y="187">A</text><text x="319" y="215">B</text><text x="419" y="243">C</text>
+  </g>
+  <!-- overlap hatching -->
+  <g fill="#eb6834" opacity="0.25">
+    <rect x="240" y="170" width="58" height="24"/>
+    <rect x="340" y="198" width="58" height="24"/>
+  </g>
+  <text x="512" y="215" font-size="11.5" font-weight="600" fill="#eb6834">9 週</text>
+  <text x="512" y="232" font-size="11" fill="#52514e">⚠ 風險↑ 可能重工</text>
+  <text x="512" y="247" font-size="11" fill="#52514e">成本不變</text>
+
+  <!-- ROW 3: crashing -->
+  <text x="24" y="298" font-size="13" font-weight="600" fill="#0b0b0b">Crashing</text>
+  <text x="24" y="315" font-size="11" fill="#52514e">趕工</text>
+  <text x="24" y="330" font-size="11" fill="#52514e">→ 加資源</text>
+  <g fill="#2a78d6">
+    <rect x="140" y="283" width="118" height="26" rx="4"/>
+    <rect x="262" y="283" width="116" height="26" rx="4"/>
+    <rect x="382" y="283" width="118" height="26" rx="4"/>
+  </g>
+  <g font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="199" y="301">A</text><text x="320" y="301">B</text><text x="441" y="301">C</text>
+  </g>
+  <g font-size="10" fill="#eb6834" text-anchor="middle" font-weight="600">
+    <text x="199" y="324">+人力</text><text x="320" y="324">+加班</text><text x="441" y="324">+人力</text>
+  </g>
+  <text x="512" y="301" font-size="11.5" font-weight="600" fill="#eb6834">9 週</text>
+
+  <!-- legend -->
+  <g font-size="11.5" fill="#52514e">
+    <rect x="140" y="352" width="12" height="12" rx="2" fill="#2a78d6"/>
+    <text x="158" y="362">作業工期</text>
+    <rect x="232" y="352" width="12" height="12" rx="2" fill="#eb6834" opacity="0.25"/>
+    <text x="250" y="362">平行重疊區（風險來源）</text>
+  </g>
+  <text x="140" y="386" font-size="12" fill="#0b0b0b">💡 Fast Track 花的是「風險」，Crashing 花的是「錢」—— 罰款很重時，花錢比較划算</text>
+</svg>

@@ -1,0 +1,80 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 380" width="720" height="380" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="720" height="380" fill="#fcfcfb"/>
+
+  <text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">工作分解結構 WBS</text>
+  <text x="24" y="52" font-size="12.5" fill="#52514e">由上而下拆解「交付物」，不是拆解「動作」——100% 法則：子層加總＝母層全部範疇</text>
+
+  <!-- connectors -->
+  <g stroke="#c9c8c2" stroke-width="1.5" fill="none">
+    <path d="M360,72 L360,90"/>
+    <path d="M360,90 L150,90 L150,108"/>
+    <path d="M360,90 L360,108"/>
+    <path d="M360,90 L570,90 L570,108"/>
+
+    <path d="M150,140 L150,158 L90,158 L90,176"/>
+    <path d="M150,158 L210,158 L210,176"/>
+
+    <path d="M570,140 L570,158 L510,158 L510,176"/>
+    <path d="M570,158 L630,158 L630,176"/>
+
+    <path d="M210,208 L210,226 L180,226 L180,244"/>
+    <path d="M210,226 L240,226 L240,244"/>
+  </g>
+
+  <!-- Level 0: Project -->
+  <rect x="300" y="40" width="120" height="32" rx="4" fill="#2a78d6"/>
+  <text x="360" y="61" font-size="12.5" font-weight="600" fill="#ffffff" text-anchor="middle">專案</text>
+
+  <!-- Level 1: Deliverables -->
+  <g fill="#2a78d6">
+    <rect x="95" y="108" width="110" height="32" rx="4"/>
+    <rect x="305" y="108" width="110" height="32" rx="4"/>
+    <rect x="515" y="108" width="110" height="32" rx="4"/>
+  </g>
+  <g font-size="11.5" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="150" y="129">交付物 A</text>
+    <text x="360" y="129">交付物 B</text>
+    <text x="570" y="129">交付物 C</text>
+  </g>
+
+  <!-- Level 2: sub-deliverables under A and C -->
+  <g fill="#1baf7a">
+    <rect x="45" y="176" width="90" height="30" rx="4"/>
+    <rect x="165" y="176" width="90" height="30" rx="4"/>
+    <rect x="465" y="176" width="90" height="30" rx="4"/>
+    <rect x="585" y="176" width="90" height="30" rx="4"/>
+  </g>
+  <g font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="90" y="195">子項 A1</text>
+    <text x="210" y="195">子項 A2</text>
+    <text x="510" y="195">子項 C1</text>
+    <text x="630" y="195">子項 C2</text>
+  </g>
+
+  <!-- Level 3: work packages under A2 -->
+  <g fill="#eb6834">
+    <rect x="150" y="244" width="66" height="30" rx="4"/>
+    <rect x="222" y="244" width="66" height="30" rx="4"/>
+  </g>
+  <g font-size="10.5" font-weight="600" fill="#ffffff" text-anchor="middle">
+    <text x="183" y="263">工作包</text>
+    <text x="255" y="263">工作包</text>
+  </g>
+
+  <!-- annotation -->
+  <line x1="288" y1="259" x2="330" y2="259" stroke="#eb6834" stroke-width="1.5" stroke-dasharray="4 3"/>
+  <text x="336" y="256" font-size="11.5" fill="#eb6834" font-weight="600">WBS 最底層</text>
+  <text x="336" y="271" font-size="11" fill="#52514e">（不可再分、可估算、可指派、可控管）</text>
+
+  <!-- legend -->
+  <g font-size="11.5" fill="#52514e">
+    <rect x="24" y="300" width="12" height="12" rx="2" fill="#2a78d6"/>
+    <text x="42" y="310">上層彙總節點</text>
+    <rect x="150" y="300" width="12" height="12" rx="2" fill="#1baf7a"/>
+    <text x="168" y="310">中間層級</text>
+    <rect x="260" y="300" width="12" height="12" rx="2" fill="#eb6834"/>
+    <text x="278" y="310">工作包（最底層）</text>
+  </g>
+
+  <text x="24" y="340" font-size="12" fill="#0b0b0b">💡 WBS 只拆「要交付什麼」，不排序、不寫「誰做」「何時做」——那是時程與資源的事</text>
+</svg>

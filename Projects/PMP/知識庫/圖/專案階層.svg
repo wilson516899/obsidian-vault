@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 420" width="700" height="420" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="700" height="420" fill="#fcfcfb"/>
+
+  <text x="24" y="30" font-size="17" font-weight="600" fill="#0b0b0b">Portfolio ⊃ Program ⊃ Project　（Operations 獨立於外）</text>
+  <text x="24" y="50" font-size="12.5" fill="#52514e">從上到下：策略對齊　→　效益協調　→　交付產出</text>
+
+  <!-- Portfolio outer -->
+  <rect x="40" y="70" width="420" height="300" rx="10" fill="#2a78d6"/>
+  <text x="60" y="98" font-size="14" font-weight="700" fill="#ffffff">投資組合 Portfolio</text>
+  <text x="60" y="116" font-size="11" fill="#ffffff" opacity="0.9">為達成策略目標而組合管理</text>
+
+  <!-- Program inner -->
+  <rect x="70" y="132" width="360" height="210" rx="8" fill="#1baf7a"/>
+  <text x="90" y="158" font-size="13" font-weight="700" fill="#ffffff">專案集 Program</text>
+  <text x="90" y="175" font-size="11" fill="#ffffff" opacity="0.9">協調管理相關專案，取得單獨管理拿不到的效益</text>
+
+  <!-- Projects innermost -->
+  <rect x="100" y="190" width="150" height="70" rx="6" fill="#eda100"/>
+  <text x="175" y="220" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">專案 A</text>
+  <text x="175" y="238" font-size="10.5" fill="#ffffff" text-anchor="middle">Project</text>
+
+  <rect x="270" y="190" width="150" height="70" rx="6" fill="#eda100"/>
+  <text x="345" y="220" font-size="12.5" font-weight="700" fill="#ffffff" text-anchor="middle">專案 B</text>
+  <text x="345" y="238" font-size="10.5" fill="#ffffff" text-anchor="middle">Project</text>
+
+  <!-- second program to show portfolio holds multiple programs -->
+  <rect x="100" y="278" width="320" height="52" rx="8" fill="#1baf7a" opacity="0.55"/>
+  <text x="260" y="309" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">專案集 2（其他 Program，同樣模式）</text>
+
+  <!-- Operations box, separate -->
+  <rect x="500" y="132" width="160" height="130" rx="10" fill="#52514e"/>
+  <text x="580" y="185" font-size="13.5" font-weight="700" fill="#ffffff" text-anchor="middle">營運</text>
+  <text x="580" y="203" font-size="12" font-weight="700" fill="#ffffff" text-anchor="middle">Operations</text>
+  <text x="580" y="225" font-size="10.5" fill="#ffffff" opacity="0.9" text-anchor="middle">持續性、重複性</text>
+  <text x="580" y="240" font-size="10.5" fill="#ffffff" opacity="0.9" text-anchor="middle">維持組織日常運作</text>
+
+  <!-- dashed connector showing operations is outside hierarchy but coordinates with portfolio -->
+  <line x1="460" y1="200" x2="500" y2="200" stroke="#c9c8c2" stroke-width="1.5" stroke-dasharray="4 4"/>
+  <text x="480" y="192" font-size="10" fill="#52514e" text-anchor="middle">獨立</text>
+
+  <text x="24" y="398" font-size="12" fill="#0b0b0b">💡 Portfolio 管的是「投什麼、對不對齊策略」；Program 管的是「這些專案合起來的效益」；Project 管的是「單一交付」</text>
+</svg>

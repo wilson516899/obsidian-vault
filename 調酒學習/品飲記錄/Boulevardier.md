@@ -1,6 +1,7 @@
-﻿---
+---
 基酒: 威士忌
 結構: Spirit-Forward
+分類: 同格變體
 正式名稱: Boulevardier
 品飲日期: 2026/08/21
 評分:
@@ -10,14 +11,15 @@
   酒感: 4
   酒體: 4
   偏好: 4.5
-tags: [調酒, 品飲記錄, 威士忌, Spirit-Forward, Boulevardier, Free-Exploration]
+香氣: [苦味系, 基酒本味]
+tags: [調酒, 品飲記錄, 威士忌, Spirit-Forward, Boulevardier, 同格變體]
 ---
-
+ˊ
 # Boulevardier
 
 > **Boulevardier** = Negroni 的威士忌版本，以波本威士忌取代琴酒。  
 > 此酒吧版本在 1:1:1 基礎上加重苦精用量（個人俗稱「花花公子」）。  
-> 屬於 Free Exploration，非 18杯清單標準項。
+> 分類為「同格變體」：與 Lavender Manhattan 同屬威士忌×Spirit-Forward 格，非 18杯清單標準項。
 
 ## 酒譜
 
@@ -54,13 +56,15 @@ tags: [調酒, 品飲記錄, 威士忌, Spirit-Forward, Boulevardier, Free-Explo
 
 ## 延伸探索
 
+> 📌 這是**單杯延伸素材**，不是行動清單。要決定下次點什麼看 [[Obsidian/調酒學習/18杯地圖#🍸 下次點酒看這裡（唯一行動清單）|18杯地圖 › 下次點酒看這裡]]。
+
 > 基於此杯原料，推薦尚未嘗試、但有直接關聯的調酒。
 
 **換掉苦味利口酒 → 感受苦感維度的差異**
 - **Black Manhattan**（Bourbon + Averna Amaro + Bitters）— 把 Campari 換成義大利草本苦酒 Averna，苦感更深沉、帶可可與草藥尾韻，接近你偏好的厚重路線（Claude推薦）
 
 **去掉 Vermouth → 還原威士忌 + 苦精的骨架**
-- **Old Fashioned**（Bourbon + Sugar Cube + Angostura Bitters）— 去掉 Vermouth，只剩威士忌 × 苦精，感受純基酒 + 苦精的基礎骨幹是什麼感覺（Claude推薦）
+- **Sazerac**（Rye Whiskey + Absinthe 洗杯 + Peychaud's Bitters + 糖）— 同樣去掉 Vermouth 只剩威士忌+苦精的骨架，但用 Absinthe 洗杯取代 Angostura，感受不同苦精/草本調性的純骨架版本（Claude推薦）
 
 **加入酸度 → 同材料變 Sour 結構**
 - **Paper Plane**（Bourbon + Aperol + Amaro Nonino + Lemon，四等份）— 把你這杯的苦味方向加入等量酸度與杏仁草本，看苦感 + 酸感能否共存（Claude推薦）

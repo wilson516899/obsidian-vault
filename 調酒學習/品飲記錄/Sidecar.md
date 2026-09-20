@@ -1,6 +1,7 @@
 ﻿---
 基酒: 白蘭地
 結構: Sour
+分類: 18杯
 品飲日期: 2026/08/21
 評分:
   甜: 2
@@ -9,6 +10,7 @@
   酒感: 4
   酒體: 3
   偏好: 2
+香氣: [柑橘皮, 果汁酸]
 tags: [調酒, 品飲記錄, 白蘭地, Sour]
 ---
 
@@ -47,6 +49,8 @@ tags: [調酒, 品飲記錄, 白蘭地, Sour]
 
 ## 延伸探索
 
+> 📌 這是**單杯延伸素材**，不是行動清單。要決定下次點什麼看 [[Obsidian/調酒學習/18杯地圖#🍸 下次點酒看這裡（唯一行動清單）|18杯地圖 › 下次點酒看這裡]]。
+
 > 基於此杯原料，推薦尚未嘗試、但有直接關聯的調酒。
 
 **換掉橙酒 → 把壓制 Cognac 的材料換掉，才能真正認識白蘭地**
@@ -54,8 +58,8 @@ tags: [調酒, 品飲記錄, 白蘭地, Sour]
 - **Between the Sheets**（Cognac + 白蘭姆 + Triple Sec + 檸檬）— 加入蘭姆酒，橙酒用量相對降低，Cognac 個性可能更明顯（Claude推薦）
 
 **換基酒 → 同樣橙酒 + 檸檬，感受基酒差異**
-- **Margarita**（龍舌蘭 + Triple Sec + 萊姆）— 把 Cognac 換成龍舌蘭，看橙酒在不同基酒下是否仍然蓋過一切（Claude推薦）
-- **White Lady**（琴酒 + Cointreau + 檸檬）— 把 Cognac 換成琴酒，同樣的橙酒 + 酸框架，感受植物香 vs 葡萄香的差別（Claude推薦）
+- **Cosmopolitan**（伏特加 + Triple Sec + 蔓越莓汁 + 萊姆）— 把 Cognac 換成伏特加，看橙酒在中性基酒下是否還是蓋過一切（Claude推薦）
+- **Corpse Reviver No. 2**（Gin + Cointreau + Lillet Blanc + 檸檬 + Absinthe 洗杯）— 把 Cognac 換成琴酒且再加一層 Absinthe，同樣橙酒為核心但複雜度更高（Claude推薦）
 
 **純飲方向 → 真正理解白蘭地**
 - **Brandy & Soda**（Cognac + 氣泡水）— 18杯清單 Sparkling 選項，白蘭地的純粹個性不被其他材料干擾（Claude推薦）

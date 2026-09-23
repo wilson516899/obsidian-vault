@@ -1,0 +1,44 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 700 300" width="700" height="300" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI','Noto Sans TC',sans-serif">
+  <rect width="700" height="300" fill="#fcfcfb"/>
+
+  <text x="24" y="32" font-size="17" font-weight="600" fill="#0b0b0b">Lead 前導 vs Lag 延遲（FS 關係）</text>
+  <text x="24" y="52" font-size="12.5" fill="#52514e">Lead 讓後續活動提早開始（重疊）；Lag 讓後續活動延後開始（間隔）</text>
+
+  <!-- time axis -->
+  <line x1="80" y1="74" x2="660" y2="74" stroke="#8a8880" stroke-width="1.5"/>
+  <g font-size="10" fill="#52514e" text-anchor="middle">
+    <text x="80" y="68">0</text><text x="270" y="68">10</text>
+    <text x="460" y="68">20</text><text x="650" y="68">32 天</text>
+  </g>
+
+  <line x1="460" y1="74" x2="460" y2="260" stroke="#c9c8c2" stroke-width="1" stroke-dasharray="4 4"/>
+  <text x="465" y="90" font-size="10.5" fill="#52514e">A 結束（第20天）</text>
+
+  <!-- Row 1: FS + Lead -->
+  <text x="24" y="112" font-size="13" font-weight="600" fill="#0b0b0b">FS ＋ Lead 12 天</text>
+  <text x="24" y="128" font-size="11" fill="#eb6834">B 提早開始，兩者重疊</text>
+
+  <rect x="80" y="140" width="380" height="26" rx="4" fill="#2a78d6"/>
+  <text x="270" y="158" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">活動 A（20 天）</text>
+
+  <rect x="308" y="140" width="304" height="26" rx="4" fill="#eb6834" opacity="0.85"/>
+  <text x="460" y="158" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">活動 B（15 天）</text>
+
+  <!-- overlap bracket -->
+  <line x1="308" y1="172" x2="460" y2="172" stroke="#eb6834" stroke-width="1.5"/>
+  <text x="384" y="186" font-size="10.5" fill="#eb6834" text-anchor="middle">重疊 12 天 ＝ B 在 A 結束前 12 天就開始</text>
+
+  <!-- Row 2: FS + Lag -->
+  <text x="24" y="222" font-size="13" font-weight="600" fill="#0b0b0b">FS ＋ Lag 12 天</text>
+  <text x="24" y="238" font-size="11" fill="#52514e">B 延後開始，兩者間隔</text>
+
+  <rect x="80" y="205" width="380" height="26" rx="4" fill="#2a78d6"/>
+  <text x="270" y="223" font-size="12" font-weight="600" fill="#ffffff" text-anchor="middle">活動 A（20 天）</text>
+
+  <rect x="536" y="205" width="0" height="26" rx="4" fill="#8a8880"/>
+  <rect x="536" y="205" width="90" height="26" rx="4" fill="#8a8880"/>
+  <text x="581" y="223" font-size="11" font-weight="600" fill="#ffffff" text-anchor="middle">B</text>
+
+  <line x1="460" y1="237" x2="536" y2="237" stroke="#8a8880" stroke-width="1.5" stroke-dasharray="3 3"/>
+  <text x="498" y="252" font-size="10.5" fill="#52514e" text-anchor="middle">間隔 12 天</text>
+</svg>

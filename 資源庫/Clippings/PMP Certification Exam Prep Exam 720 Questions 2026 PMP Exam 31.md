@@ -36,3 +36,9 @@ Your answer is incorrect 您的回答不正確。
 
 The project manager is assigned and given authority over resources  
 項目經理負責，並擁有資源的管理權限。
+
+---
+
+> [!note] 錯題已建檔
+> **E025** · 專案「被良好啟動」時，以下哪一項不是應有的產出
+> 錯題本：[[Projects/PMP/錯題本]] ｜ 知識點：[[Projects/PMP/知識庫/啟動流程的產出邊界]] 🆕

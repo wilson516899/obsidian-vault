@@ -1,7 +1,7 @@
 {
-  "total_pts": 53,
-  "streak": 3,
-  "last_updated": "2026-09-21",
+  "total_pts": 101,
+  "streak": 4,
+  "last_updated": "2026-09-22",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -26,7 +26,7 @@
       "date": "2026-06-15"
     }
   ],
-  "total_pmp_minutes": 270,
+  "total_pmp_minutes": 300,
   "weekly_completed": {
     "2026-W19": [],
     "2026-W20": [],
@@ -1598,6 +1598,20 @@
       "tasks_done": [
         "記錄體重",
         "飯後走路 20 分鐘"
+      ]
+    },
+    {
+      "date": "2026-09-22",
+      "pts": 48,
+      "base_pts": 40,
+      "streak_bonus": 8,
+      "streak": 4,
+      "weight_kg": 76.6,
+      "gratitude_text": null,
+      "tasks_done": [
+        "記錄體重",
+        "",
+        "PMP 讀書 30 分鐘"
       ]
     }
   ]

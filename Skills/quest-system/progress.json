@@ -1,7 +1,7 @@
 {
   "total_pts": 101,
-  "streak": 4,
-  "last_updated": "2026-09-22",
+  "streak": 0,
+  "last_updated": "2026-09-23",
   "current_goal": {
     "name": "兩天一夜旅行",
     "target_pts": 1500
@@ -1613,6 +1613,16 @@
         "",
         "PMP 讀書 30 分鐘"
       ]
+    },
+    {
+      "date": "2026-09-23",
+      "pts": 0,
+      "base_pts": 0,
+      "streak_bonus": 0,
+      "streak": 0,
+      "weight_kg": null,
+      "gratitude_text": null,
+      "tasks_done": []
     }
   ]
 }

@@ -14,6 +14,7 @@
 | [[Skills/book-fill/README\|book-fill]] | 書摘 + 小說任務推薦 | cron 08:05，每週一 |
 | [[Skills/budget-import/README\|budget-import]] | 匯入 Budget App 記帳資料到 記帳/ 資料夾（腳本在 `C:\Users\崇瑋\Desktop\Claude\budget-import\`，不在 Vault） | 手動，建議每月 1 號 |
 | [[Skills/git-sync/README\|git-sync]] | Vault 變更自動 commit + push 到 GitHub | cron 23:05，每日 |
+| [[Skills/dating-budget-report/README\|dating-budget-report]] | 約會帳本 CSV → 月度分類分析 Excel → 給女朋友看的視覺化 PDF 月報（輸出在 `Desktop/約會記帳/`，跟家庭記帳分開） | 手動，有新匯出連結時 |
 
 ## 行為指令型（對話中執行）
 

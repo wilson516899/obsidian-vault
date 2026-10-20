@@ -42,4 +42,4 @@ Failure in meeting user experience benchmarks
 
 ---
 
-錯題本：[[Projects/PMP/錯題本#E063 · 新創公司雲端 DevOps 訓練產品上線前 QA 未做全面品質檢查，用戶反饋多處未被注意的問題，PM 主要面對的是什麼問題|E063]] ｜ 知識庫：[[Projects/PMP/知識庫/品質流程去哪了(PMBOK6→8)]]
+錯題本：[[Projects/PMP/錯題本#E063 · 新創公司雲端 DevOps 訓練產品上線前 QA 未做全面品質檢查，用戶反饋多處未被注意的問題，PM 主要面對的是什麼問題|E063]] ｜ 知識庫：[[Projects/PMP/知識庫/品質缺陷事件 描述現象 vs 過度推論根因]]
